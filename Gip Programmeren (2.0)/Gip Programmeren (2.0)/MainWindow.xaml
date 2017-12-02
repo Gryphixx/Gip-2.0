@@ -37,10 +37,10 @@
                             <TabItem Header="Weekindeling">
                                 <Grid Background="#FFE5E5E5">
                                     <ListBox Name="lstWeekindelingLeerlingen" HorizontalAlignment="Left" Height="220" Margin="10,55,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="lstWeekindelingLeerlingen_SelectionChanged"/>
-                                    <CheckBox Name="chkMaandag" Content="Maandag" HorizontalAlignment="Left" Margin="195,55,0,0" VerticalAlignment="Top" Checked="chkMaandag_Checked"/>
-                                    <CheckBox Name="chkDinsdag" Content="Dinsdag" HorizontalAlignment="Left" Margin="195,75,0,0" VerticalAlignment="Top" Checked="chkDinsdag_Checked"/>
-                                    <CheckBox Name="chkDonderdag" Content="Donderdag" HorizontalAlignment="Left" Margin="195,95,0,0" VerticalAlignment="Top" Checked="chkDonderdag_Checked"/>
-                                    <CheckBox Name="chkVrijdag" Content="Vrijdag" HorizontalAlignment="Left" Margin="195,115,0,0" VerticalAlignment="Top" Checked="chkVrijdag_Checked"/>
+                                    <CheckBox Name="chkMaandag" Content="Maandag" HorizontalAlignment="Left" Margin="195,55,0,0" VerticalAlignment="Top" Click="chkMaandag_Click"/>
+                                    <CheckBox Name="chkDinsdag" Content="Dinsdag" HorizontalAlignment="Left" Margin="195,75,0,0" VerticalAlignment="Top" Click="chkDinsdag_Click"/>
+                                    <CheckBox Name="chkDonderdag" Content="Donderdag" HorizontalAlignment="Left" Margin="195,95,0,0" VerticalAlignment="Top" Click="chkDonderdag_Click"/>
+                                    <CheckBox Name="chkVrijdag" Content="Vrijdag" HorizontalAlignment="Left" Margin="195,115,0,0" VerticalAlignment="Top" Click="chkVrijdag_Click"/>
                                     <TextBox Name="txtWeekindelingNaam" HorizontalAlignment="Left" Height="18" Margin="70,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                     <ComboBox HorizontalAlignment="Left" Margin="70,28,0,0" VerticalAlignment="Top" Width="120"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
