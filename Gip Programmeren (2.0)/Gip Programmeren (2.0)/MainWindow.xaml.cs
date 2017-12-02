@@ -280,5 +280,7 @@ namespace Gip_Programmeren__2._0_
                 UpdateDBDag("Friday", objLeerling.blMaandag, objLeerling);
             }
         }
+
+        // Begin ToevoegInstelling
     }
 }
