@@ -30,6 +30,8 @@ namespace Gip_Programmeren__2._0_
             
         }
 
+        // Begin StatusIntelling
+
         private void OpvullenLeerlingLijst()
         {
             string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
@@ -183,6 +185,8 @@ namespace Gip_Programmeren__2._0_
                 UpdateDBStatus("4", objLeerling);
             }
         }
+
+        // Begin DagInstelling
 
         private void OpvullenDagInstelling()
         {
