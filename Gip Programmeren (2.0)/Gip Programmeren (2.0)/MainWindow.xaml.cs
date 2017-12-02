@@ -221,7 +221,7 @@ namespace Gip_Programmeren__2._0_
             conn.Close();
         }
 
-        private void chkMaandag_Checked(object sender, RoutedEventArgs e)
+        private void chkMaandag_Click(object sender, RoutedEventArgs e)
         {
             Leerling objLeerling = (Leerling)lstWeekindelingLeerlingen.SelectedItem;
             if (objLeerling == null)
@@ -235,7 +235,7 @@ namespace Gip_Programmeren__2._0_
             }
         }
 
-        private void chkDinsdag_Checked(object sender, RoutedEventArgs e)
+        private void chkDinsdag_Click (object sender, RoutedEventArgs e)
         {
             Leerling objLeerling = (Leerling)lstWeekindelingLeerlingen.SelectedItem;
             if (objLeerling == null)
@@ -249,7 +249,7 @@ namespace Gip_Programmeren__2._0_
             }
         }
 
-        private void chkDonderdag_Checked(object sender, RoutedEventArgs e)
+        private void chkDonderdag_Click(object sender, RoutedEventArgs e)
         {
             Leerling objLeerling = (Leerling)lstWeekindelingLeerlingen.SelectedItem;
             if (objLeerling == null)
@@ -263,7 +263,7 @@ namespace Gip_Programmeren__2._0_
             }
         }
 
-        private void chkVrijdag_Checked(object sender, RoutedEventArgs e)
+        private void chkVrijdag_Click(object sender, RoutedEventArgs e)
         {
             Leerling objLeerling = (Leerling)lstWeekindelingLeerlingen.SelectedItem;
             if (objLeerling == null)
