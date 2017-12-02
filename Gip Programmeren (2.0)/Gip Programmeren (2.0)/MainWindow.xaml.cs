@@ -26,6 +26,7 @@ namespace Gip_Programmeren__2._0_
         {
             InitializeComponent();
             OpvullenLeerlingLijst();
+            OpvullenDagInstelling();
             
         }
 
@@ -180,6 +181,99 @@ namespace Gip_Programmeren__2._0_
             else
             {
                 UpdateDBStatus("4", objLeerling);
+            }
+        }
+
+        private void OpvullenDagInstelling()
+        {
+            string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
+            MySqlConnection conn = new MySqlConnection(_conn);
+            conn.Open();
+            string _cmd = string.Format("SELECT * from leerling");
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
+                lstWeekindelingLeerlingen.Items.Add(objLeerling);
+            }
+
+            conn.Close();
+        }
+
+        private void lstWeekindelingLeerlingen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Leerling objLeerling = (Leerling)lstWeekindelingLeerlingen.SelectedItem;
+            chkMaandag.IsChecked = objLeerling.blMaandag;
+            chkDinsdag.IsChecked = objLeerling.blDinsdag;
+            chkDonderdag.IsChecked = objLeerling.blDonderdag;
+            chkVrijdag.IsChecked = objLeerling.blVrijdag;
+        }
+
+        private void UpdateDBDag(string _DBDag, bool _blDag, Leerling _objLeerling)
+        {
+            string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
+            MySqlConnection conn = new MySqlConnection(_conn);
+            conn.Open();
+            string _cmd = string.Format("update leerling set {0} = {1} where idLeerlingen = {2}", _DBDag, _blDag, _objLeerling.strIdnummer);
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        private void chkMaandag_Checked(object sender, RoutedEventArgs e)
+        {
+            Leerling objLeerling = (Leerling)lstWeekindelingLeerlingen.SelectedItem;
+            if (objLeerling == null)
+            {
+                return;
+            }
+            else
+            {
+                objLeerling.blMaandag = Convert.ToBoolean(chkMaandag.IsChecked);
+                UpdateDBDag("Monday", objLeerling.blMaandag, objLeerling);
+            }
+        }
+
+        private void chkDinsdag_Checked(object sender, RoutedEventArgs e)
+        {
+            Leerling objLeerling = (Leerling)lstWeekindelingLeerlingen.SelectedItem;
+            if (objLeerling == null)
+            {
+                return;
+            }
+            else
+            {
+                objLeerling.blMaandag = Convert.ToBoolean(chkMaandag.IsChecked);
+                UpdateDBDag("Tuesday", objLeerling.blMaandag, objLeerling);
+            }
+        }
+
+        private void chkDonderdag_Checked(object sender, RoutedEventArgs e)
+        {
+            Leerling objLeerling = (Leerling)lstWeekindelingLeerlingen.SelectedItem;
+            if (objLeerling == null)
+            {
+                return;
+            }
+            else
+            {
+                objLeerling.blMaandag = Convert.ToBoolean(chkMaandag.IsChecked);
+                UpdateDBDag("Thursday", objLeerling.blMaandag, objLeerling);
+            }
+        }
+
+        private void chkVrijdag_Checked(object sender, RoutedEventArgs e)
+        {
+            Leerling objLeerling = (Leerling)lstWeekindelingLeerlingen.SelectedItem;
+            if (objLeerling == null)
+            {
+                return;
+            }
+            else
+            {
+                objLeerling.blMaandag = Convert.ToBoolean(chkMaandag.IsChecked);
+                UpdateDBDag("Friday", objLeerling.blMaandag, objLeerling);
             }
         }
     }
