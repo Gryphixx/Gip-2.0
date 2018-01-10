@@ -8,7 +8,11 @@
         Title="MainWindow" Height="682.5" Width="1054.5">
     <Viewbox>
         <Grid>
-            <TabControl HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="517" TabStripPlacement="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="107*"/>
+                <RowDefinition Height="212*"/>
+            </Grid.RowDefinitions>
+            <TabControl HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="517" TabStripPlacement="Left" Grid.RowSpan="2">
                 <TabItem Header="Overzicht">
                     <TabItem.Background>
                         <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -103,6 +107,20 @@
                     <Grid Background="#FFE5E5E5"/>
                 </TabItem>
             </TabControl>
+            <Image Name="logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="5,192,0,0" Grid.Row="1" Source="http://ozcs-koepel.be/wp-content/uploads/2013/12/sintcordula-300x300.jpg"/>
+            <Label Content="Database status:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,81.5,0,0" Grid.Row="1" FontSize="11"/>
+            <Ellipse Name="StatusDatabase" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,90.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+
+
 
         </Grid>
     </Viewbox>

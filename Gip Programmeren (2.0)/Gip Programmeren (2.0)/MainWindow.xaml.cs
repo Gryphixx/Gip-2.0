@@ -27,9 +27,33 @@ namespace Gip_Programmeren__2._0_
             InitializeComponent();
             OpvullenLeerlingLijst();
             OpvullenDagInstelling();
+        
+        
+        
+            bool result = false;
+            string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
+            MySqlConnection connection = new MySqlConnection(_conn);
+            try
+            {
+                connection.Open();
+                result = true;
+                connection.Close();
+            }
+            catch
+            {
+                result = false;
+            }
+
+            if (result == true)
+            {
+                StatusDatabase.Fill = Brushes.Green;
+            }
+            else
+            {
+                StatusDatabase.Fill = Brushes.Red;
+            }
             
         }
-
         // Begin StatusIntelling
 
         private void OpvullenLeerlingLijst()
