@@ -29,9 +29,11 @@ namespace Gip_Programmeren__2._0_
             InitializeComponent();
             OpvullenLeerlingLijst();
             OpvullenDagInstelling();
-        
-        
-        
+            OpvullenWissenLeerlingLijst();
+
+
+
+
             bool result = false;
             MySqlConnection connection = new MySqlConnection(_conn);
             try
@@ -206,7 +208,7 @@ namespace Gip_Programmeren__2._0_
         private void txtWeekindelingNaam_KeyUp(object sender, KeyEventArgs e)
         {
             conn.Open();
-            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' ", txtWeekindelingNaam.Text);
+            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%' ", txtWeekindelingNaam.Text);
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
             MySqlDataReader dr = cmd.ExecuteReader();
             lstWeekindelingLeerlingen.Items.Clear();
@@ -329,5 +331,41 @@ namespace Gip_Programmeren__2._0_
         }
 
         // Begin ToevoegInstelling
+
+        // Begin Beheer Kaarten
+
+        // Begin Wissen
+
+        public void OpvullenWissenLeerlingLijst()
+        {
+            conn.Open();
+            string _cmd = string.Format("SELECT * from leerling");
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
+                lstLeerling.Items.Add(objLeerling);
+            }
+
+            conn.Close();
+        }
+
+        private void txtLeerling_KeyUp(object sender, KeyEventArgs e)
+        {
+            conn.Open();
+            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%' ", txtWeekindelingNaam.Text);
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            lstLeerling.Items.Clear();
+            while (dr.Read())
+            {
+
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
+                lstLeerling.Items.Add(objLeerling);
+            }
+
+            conn.Close();
+        }
     }
 }
