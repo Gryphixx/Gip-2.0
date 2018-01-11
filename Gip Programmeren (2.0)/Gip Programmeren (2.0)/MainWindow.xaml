@@ -98,7 +98,22 @@
                                 <Grid Background="#FFE5E5E5"/>
                             </TabItem>
                             <TabItem Header="Wissen">
-                                <Grid Background="#FFE5E5E5"/>
+                                <Grid Background="#FFE5E5E5">
+                                    <Label Content="Scan kaart of selecteer een leerling waarvan u de kaart wilt wissen." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                                    <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top"/>
+                                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                    <ListBox HorizontalAlignment="Left" Height="218" Margin="10,57,0,0" VerticalAlignment="Top" Width="175"/>
+                                    <Button Content="Wissen" HorizontalAlignment="Left" Margin="311,255,0,0" VerticalAlignment="Top" Width="75"/>
+                                    <Image HorizontalAlignment="Left" Height="100" Margin="237,26,0,0" VerticalAlignment="Top" Width="100"/>
+                                    <Label Content="Naam:" HorizontalAlignment="Left" Margin="190,131,0,0" VerticalAlignment="Top"/>
+                                    <Label Content="Achternaam:" HorizontalAlignment="Left" Margin="190,157,0,0" VerticalAlignment="Top"/>
+                                    <Label Content="Klas:" HorizontalAlignment="Left" Margin="190,183,0,0" VerticalAlignment="Top"/>
+                                    <Label Content="Nummer:" HorizontalAlignment="Left" Margin="190,209,0,0" VerticalAlignment="Top"/>
+                                    <Label Name="lblNaam" Content="" HorizontalAlignment="Left" Margin="279,131,0,0" VerticalAlignment="Top"/>
+                                    <Label Name="lblAchternaam" Content="" HorizontalAlignment="Left" Margin="279,157,0,0" VerticalAlignment="Top"/>
+                                    <Label Name="lblKlas" Content="" HorizontalAlignment="Left" Margin="279,183,0,0" VerticalAlignment="Top"/>
+                                    <Label Name="lblNummer" Content="" HorizontalAlignment="Left" Margin="279,209,0,0" VerticalAlignment="Top"/>
+                                </Grid>
                             </TabItem>
                         </TabControl>
                     </Grid>
