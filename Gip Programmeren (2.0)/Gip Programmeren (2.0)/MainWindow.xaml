@@ -40,7 +40,9 @@
                         <TabControl HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
                             <TabItem Header="Weekindeling">
                                 <Grid Background="#FFE5E5E5">
-                                    <ListBox Name="lstWeekindelingLeerlingen" HorizontalAlignment="Left" Height="220" Margin="10,55,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="lstWeekindelingLeerlingen_SelectionChanged"/>
+                                    <ListBox Name="lstWeekindelingLeerlingen" HorizontalAlignment="Left" Height="220" Margin="10,55,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="lstWeekindelingLeerlingen_SelectionChanged">
+                                        <ListBoxItem Content="ListBoxItem"/>
+                                    </ListBox>
                                     <CheckBox Name="chkMaandag" Content="Maandag" HorizontalAlignment="Left" Margin="195,55,0,0" VerticalAlignment="Top" Click="chkMaandag_Click"/>
                                     <CheckBox Name="chkDinsdag" Content="Dinsdag" HorizontalAlignment="Left" Margin="195,75,0,0" VerticalAlignment="Top" Click="chkDinsdag_Click"/>
                                     <CheckBox Name="chkDonderdag" Content="Donderdag" HorizontalAlignment="Left" Margin="195,95,0,0" VerticalAlignment="Top" Click="chkDonderdag_Click"/>
