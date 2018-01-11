@@ -40,13 +40,17 @@
                         <TabControl HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
                             <TabItem Header="Weekindeling">
                                 <Grid Background="#FFE5E5E5">
-                                    <ListBox Name="lstWeekindelingLeerlingen" HorizontalAlignment="Left" Height="220" Margin="10,55,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="lstWeekindelingLeerlingen_SelectionChanged"/>
-                                    <CheckBox Name="chkMaandag" Content="Maandag" HorizontalAlignment="Left" Margin="195,55,0,0" VerticalAlignment="Top" Click="chkMaandag_Click"/>
-                                    <CheckBox Name="chkDinsdag" Content="Dinsdag" HorizontalAlignment="Left" Margin="195,75,0,0" VerticalAlignment="Top" Click="chkDinsdag_Click"/>
-                                    <CheckBox Name="chkDonderdag" Content="Donderdag" HorizontalAlignment="Left" Margin="195,95,0,0" VerticalAlignment="Top" Click="chkDonderdag_Click"/>
-                                    <CheckBox Name="chkVrijdag" Content="Vrijdag" HorizontalAlignment="Left" Margin="195,115,0,0" VerticalAlignment="Top" Click="chkVrijdag_Click"/>
-                                    <TextBox Name="txtWeekindelingNaam" HorizontalAlignment="Left" Height="18" Margin="70,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="txtWeekindelingNaam_KeyUp"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="70,28,0,0" VerticalAlignment="Top" Width="120"/>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="37*"/>
+                                        <ColumnDefinition Width="95*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ListBox Name="lstWeekindelingLeerlingen" HorizontalAlignment="Left" Height="220" Margin="10,55,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="lstWeekindelingLeerlingen_SelectionChanged" Grid.ColumnSpan="2"/>
+                                    <CheckBox Name="chkMaandag" Content="Maandag" HorizontalAlignment="Left" Margin="83.627,55,0,0" VerticalAlignment="Top" Click="chkMaandag_Click" Grid.Column="1"/>
+                                    <CheckBox Name="chkDinsdag" Content="Dinsdag" HorizontalAlignment="Left" Margin="83.627,75,0,0" VerticalAlignment="Top" Click="chkDinsdag_Click" Grid.Column="1"/>
+                                    <CheckBox Name="chkDonderdag" Content="Donderdag" HorizontalAlignment="Left" Margin="83.627,95,0,0" VerticalAlignment="Top" Click="chkDonderdag_Click" Grid.Column="1"/>
+                                    <CheckBox Name="chkVrijdag" Content="Vrijdag" HorizontalAlignment="Left" Margin="83.627,115,0,0" VerticalAlignment="Top" Click="chkVrijdag_Click" Grid.Column="1"/>
+                                    <TextBox Name="txtWeekindelingNaam" HorizontalAlignment="Left" Height="18" Margin="70,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="txtWeekindelingNaam_KeyUp" Grid.ColumnSpan="2"/>
+                                    <ComboBox HorizontalAlignment="Left" Margin="70,28,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
                                 </Grid>
@@ -107,7 +111,7 @@
                                     <Label Content="Scan kaart of selecteer een leerling waarvan u de kaart wilt wissen." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top"/>
                                     <TextBox HorizontalAlignment="Left" Height="23" Margin="65,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                                    <ListBox HorizontalAlignment="Left" Height="218" Margin="10,57,0,0" VerticalAlignment="Top" Width="175"/>
+                                    <ListBox Name="lstLeerling" HorizontalAlignment="Left" Height="218" Margin="10,57,0,0" VerticalAlignment="Top" Width="175"/>
                                     <Button Content="Wissen" HorizontalAlignment="Left" Margin="311,255,0,0" VerticalAlignment="Top" Width="75"/>
                                     <Image HorizontalAlignment="Left" Height="100" Margin="237,26,0,0" VerticalAlignment="Top" Width="100"/>
                                     <Label Content="Naam:" HorizontalAlignment="Left" Margin="190,131,0,0" VerticalAlignment="Top"/>

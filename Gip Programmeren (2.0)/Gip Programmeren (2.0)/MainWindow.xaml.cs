@@ -27,9 +27,11 @@ namespace Gip_Programmeren__2._0_
             InitializeComponent();
             OpvullenLeerlingLijst();
             OpvullenDagInstelling();
-        
-        
-        
+            OpvullenLeerlingWissenLijst();
+
+
+
+
             bool result = false;
             string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
             MySqlConnection connection = new MySqlConnection(_conn);
@@ -310,7 +312,7 @@ namespace Gip_Programmeren__2._0_
             string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
             MySqlConnection conn = new MySqlConnection(_conn);
             conn.Open();
-            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' ", txtWeekindelingNaam.Text);
+            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%'", txtWeekindelingNaam.Text);
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
             MySqlDataReader dr = cmd.ExecuteReader();
             lstWeekindelingLeerlingen.Items.Clear();
@@ -344,5 +346,45 @@ namespace Gip_Programmeren__2._0_
         }
 
         // Begin ToevoegInstelling
+
+
+
+        // Begin Instellingen
+
+
+        //Wissen kaarten
+        public void OpvullenLeerlingWissenLijst()
+        {
+            string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
+            MySqlConnection conn = new MySqlConnection(_conn);
+            conn.Open();
+            string _cmd = string.Format("SELECT * from leerling");
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
+                lstLeerling.Items.Add(objLeerling);
+            }
+
+            conn.Close();
+
+            //string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
+            //MySqlConnection conn = new MySqlConnection(_conn);
+            //conn.Open();
+            //string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%'", txtWeekindelingNaam.Text);
+            //MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+            //MySqlDataReader dr = cmd.ExecuteReader();
+            //lstLeerling.Items.Clear();
+            //while (dr.Read())
+            //{
+
+            //    Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
+            //    lstLeerling.Items.Add(objLeerling);
+            //}
+
+            //conn.Close();
+        }
     }
+    
 }
