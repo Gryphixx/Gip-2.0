@@ -45,7 +45,7 @@
                                     <CheckBox Name="chkDinsdag" Content="Dinsdag" HorizontalAlignment="Left" Margin="195,75,0,0" VerticalAlignment="Top" Click="chkDinsdag_Click"/>
                                     <CheckBox Name="chkDonderdag" Content="Donderdag" HorizontalAlignment="Left" Margin="195,95,0,0" VerticalAlignment="Top" Click="chkDonderdag_Click"/>
                                     <CheckBox Name="chkVrijdag" Content="Vrijdag" HorizontalAlignment="Left" Margin="195,115,0,0" VerticalAlignment="Top" Click="chkVrijdag_Click"/>
-                                    <TextBox Name="txtWeekindelingNaam" HorizontalAlignment="Left" Height="18" Margin="70,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                                    <TextBox Name="txtWeekindelingNaam" HorizontalAlignment="Left" Height="18" Margin="70,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="txtWeekindelingNaam_KeyUp"/>
                                     <ComboBox HorizontalAlignment="Left" Margin="70,28,0,0" VerticalAlignment="Top" Width="120"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
@@ -53,18 +53,23 @@
                             </TabItem>
                             <TabItem Header="Aanwezigheden">
                                 <Grid Background="#FFE5E5E5">
-                                    <ListBox Name="lstLeerlinglijst" HorizontalAlignment="Left" Height="205" Margin="10,70,0,0" VerticalAlignment="Top" Width="183" SelectionChanged="lstLeerlinglijst_SelectionChanged"/>
-                                    <ListBox Name="lstAanwezigheidslijst" HorizontalAlignment="Left" Height="205" Margin="203,70,0,0" VerticalAlignment="Top" Width="183" SelectionChanged="lstAanwezigheidslijst_SelectionChanged"/>
-                                    <RadioButton Name="rbAanwezig" Content="Aanwezig" HorizontalAlignment="Left" Margin="206,10,0,0" VerticalAlignment="Top" Checked="rbAanwezig_Checked"/>
-                                    <RadioButton Name="rbTeLaat" Content="Te Laat" HorizontalAlignment="Left" Margin="206,27,0,0" VerticalAlignment="Top"/>
-                                    <RadioButton Name="rbTeLaatReden" Content="Te Laat met reden" HorizontalAlignment="Left" Margin="281,10,0,0" VerticalAlignment="Top" Checked="rbTeLaatReden_Checked"/>
-                                    <RadioButton Name="rbAfwezig" Content="Afwezig" HorizontalAlignment="Left" Margin="281,29,0,0" VerticalAlignment="Top"/>
-                                    <TextBox Name="txtLeerlingNaam" HorizontalAlignment="Left" Height="17" Margin="90,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103"/>
-                                    <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="90,27,0,0" VerticalAlignment="Top" Width="103"/>
-                                    <Label Content="Klas:" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="284,47,0,0" VerticalAlignment="Top" Width="102" Height="17"/>
-                                    <Label Content="Weken:" HorizontalAlignment="Left" Margin="206,42,0,0" VerticalAlignment="Top"/>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="5*"/>
+                                        <ColumnDefinition Width="86*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ListBox Name="lstLeerlinglijst" HorizontalAlignment="Left" Height="205" Margin="10,70,0,0" VerticalAlignment="Top" Width="183" SelectionChanged="lstLeerlinglijst_SelectionChanged" Grid.ColumnSpan="3"/>
+                                    <ListBox Name="lstAanwezigheidslijst" HorizontalAlignment="Left" Height="205" Margin="150.939,70,0,0" VerticalAlignment="Top" Width="183" SelectionChanged="lstAanwezigheidslijst_SelectionChanged" Grid.Column="2"/>
+                                    <RadioButton Name="rbAanwezig" Content="Aanwezig" HorizontalAlignment="Left" Margin="153.939,10,0,0" VerticalAlignment="Top" Checked="rbAanwezig_Checked" Grid.Column="2"/>
+                                    <RadioButton Name="rbTeLaat" Content="Te Laat" HorizontalAlignment="Left" Margin="153.939,27,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                                    <RadioButton Name="rbTeLaatReden" Content="Te Laat met reden" HorizontalAlignment="Left" Margin="228.939,10,0,0" VerticalAlignment="Top" Checked="rbTeLaatReden_Checked" Grid.Column="2"/>
+                                    <RadioButton Name="rbAfwezig" Content="Afwezig" HorizontalAlignment="Left" Margin="228.939,29,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                                    <TextBox Name="txtLeerlingNaam" HorizontalAlignment="Left" Height="17" Margin="37.939,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" Grid.Column="2" KeyUp="txtLeerlingNaam_KeyUp"/>
+                                    <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
+                                    <ComboBox HorizontalAlignment="Left" Margin="37.939,27,0,0" VerticalAlignment="Top" Width="103" Grid.Column="2"/>
+                                    <Label Content="Klas:" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                                    <ComboBox HorizontalAlignment="Left" Margin="231.939,47,0,0" VerticalAlignment="Top" Width="102" Height="17" Grid.Column="2"/>
+                                    <Label Content="Weken:" HorizontalAlignment="Left" Margin="153.939,42,0,0" VerticalAlignment="Top" Grid.Column="2"/>
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Toevoegen&#xD;&#xA;Toevoegen" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="69" Margin="-1,0,0,0">
