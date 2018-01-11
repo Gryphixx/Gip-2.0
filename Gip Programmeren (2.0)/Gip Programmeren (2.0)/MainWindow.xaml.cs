@@ -78,7 +78,7 @@ namespace Gip_Programmeren__2._0_
             string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
             MySqlConnection conn = new MySqlConnection(_conn);
             conn.Open();
-            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' ", txtLeerlingNaam.Text);
+            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%' ", txtLeerlingNaam.Text);
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
             MySqlDataReader dr = cmd.ExecuteReader();
             lstLeerlinglijst.Items.Clear();
@@ -272,8 +272,8 @@ namespace Gip_Programmeren__2._0_
             }
             else
             {
-                objLeerling.blMaandag = Convert.ToBoolean(chkMaandag.IsChecked);
-                UpdateDBDag("Tuesday", objLeerling.blMaandag, objLeerling);
+                objLeerling.blDinsdag = Convert.ToBoolean(chkDinsdag.IsChecked);
+                UpdateDBDag("Tuesday", objLeerling.blDinsdag, objLeerling);
             }
         }
 
@@ -286,8 +286,8 @@ namespace Gip_Programmeren__2._0_
             }
             else
             {
-                objLeerling.blMaandag = Convert.ToBoolean(chkMaandag.IsChecked);
-                UpdateDBDag("Thursday", objLeerling.blMaandag, objLeerling);
+                objLeerling.blDonderdag = Convert.ToBoolean(chkDonderdag.IsChecked);
+                UpdateDBDag("Thursday", objLeerling.blDonderdag, objLeerling);
             }
         }
 
@@ -300,8 +300,8 @@ namespace Gip_Programmeren__2._0_
             }
             else
             {
-                objLeerling.blMaandag = Convert.ToBoolean(chkMaandag.IsChecked);
-                UpdateDBDag("Friday", objLeerling.blMaandag, objLeerling);
+                objLeerling.blVrijdag = Convert.ToBoolean(chkVrijdag.IsChecked);
+                UpdateDBDag("Friday", objLeerling.blVrijdag, objLeerling);
             }
         }
 
@@ -310,7 +310,7 @@ namespace Gip_Programmeren__2._0_
             string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
             MySqlConnection conn = new MySqlConnection(_conn);
             conn.Open();
-            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' ", txtWeekindelingNaam.Text);
+            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%'", txtWeekindelingNaam.Text);
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
             MySqlDataReader dr = cmd.ExecuteReader();
             lstWeekindelingLeerlingen.Items.Clear();
