@@ -48,7 +48,7 @@
                                     <CheckBox Name="chkDonderdag" Content="Donderdag" HorizontalAlignment="Left" Margin="195,95,0,0" VerticalAlignment="Top" Click="chkDonderdag_Click"/>
                                     <CheckBox Name="chkVrijdag" Content="Vrijdag" HorizontalAlignment="Left" Margin="195,115,0,0" VerticalAlignment="Top" Click="chkVrijdag_Click"/>
                                     <TextBox Name="txtWeekindelingNaam" HorizontalAlignment="Left" Height="18" Margin="70,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="txtWeekindelingNaam_KeyUp"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="70,28,0,0" VerticalAlignment="Top" Width="120"/>
+                                    <ComboBox Name="cboDagKlassen" HorizontalAlignment="Left" Margin="70,28,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboDagKlassen_SelectionChanged"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
                                 </Grid>
@@ -109,7 +109,7 @@
                                     <Label Content="Scan kaart of selecteer een leerling waarvan u de kaart wilt wissen." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top"/>
                                     <TextBox HorizontalAlignment="Left" Height="23" Margin="65,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                                    <ListBox HorizontalAlignment="Left" Height="218" Margin="10,57,0,0" VerticalAlignment="Top" Width="175"/>
+                                    <ListBox Name="lstLeerling" HorizontalAlignment="Left" Height="218" Margin="10,57,0,0" VerticalAlignment="Top" Width="175"/>
                                     <Button Content="Wissen" HorizontalAlignment="Left" Margin="311,255,0,0" VerticalAlignment="Top" Width="75"/>
                                     <Image HorizontalAlignment="Left" Height="100" Margin="237,26,0,0" VerticalAlignment="Top" Width="100"/>
                                     <Label Content="Naam:" HorizontalAlignment="Left" Margin="190,131,0,0" VerticalAlignment="Top"/>

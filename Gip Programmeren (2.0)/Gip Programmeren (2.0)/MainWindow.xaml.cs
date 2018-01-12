@@ -27,9 +27,6 @@ namespace Gip_Programmeren__2._0_
         public MainWindow()
         {
             InitializeComponent();
-            OpvullenLeerlingLijst();
-            OpvullenDagInstelling();
-            OpvullenWissenLeerlingLijst();
 
 
 
@@ -50,6 +47,9 @@ namespace Gip_Programmeren__2._0_
             if (result == true)
             {
                 StatusDatabase.Fill = Brushes.Green;
+                OpvullenLeerlingLijst();
+                OpvullenDagInstelling();
+                OpvullenWissenLeerlingLijst();
             }
             else
             {
@@ -248,10 +248,10 @@ namespace Gip_Programmeren__2._0_
             while (dr.Read())
             {
                 Klas objKlas = new Klas(dr[0].ToString(), (int)dr[1], Convert.ToDateTime(dr[2]));
-                lstWeekindelingLeerlingen.Items.Add(objKlas);
+                cboDagKlassen.Items.Add(objKlas);
             }
-
             conn.Close();
+
         }
 
         private void lstWeekindelingLeerlingen_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -345,6 +345,14 @@ namespace Gip_Programmeren__2._0_
             conn.Close();
         }
 
+        private void cboDagKlassen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+
+
+
+        }
+
         // Begin ToevoegInstelling
 
         // Begin Beheer Kaarten
@@ -382,5 +390,6 @@ namespace Gip_Programmeren__2._0_
 
             conn.Close();
         }
+
     }
 }
