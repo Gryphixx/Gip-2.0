@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gip_Programmeren__2._0_"
         mc:Ignorable="d"
-        Title="MainWindow" Height="682.5" Width="1054.5">
+        Title="Aanwezigheidssysteem" Height="682.5" Width="1054.5">
     <Viewbox>
         <Grid>
             <Grid.RowDefinitions>
