@@ -394,7 +394,7 @@ namespace Gip_Programmeren__2._0_
         private void txtLeerling_KeyUp(object sender, KeyEventArgs e)
         {
             conn.Open();
-            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%' ", txtWeekindelingNaam.Text);
+            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%' ", txtWissen.Text);
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
             MySqlDataReader dr = cmd.ExecuteReader();
             lstLeerling.Items.Clear();
@@ -408,5 +408,14 @@ namespace Gip_Programmeren__2._0_
             conn.Close();
         }
 
+        private void lstLeerling_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lblNaam.Content = null;
+            lblAchternaam.Content = null;
+            lblNummer.Content = null;
+            lblKlas.Content = null;
+            IMGWissen.Source = null;
+
+        }
     }
 }

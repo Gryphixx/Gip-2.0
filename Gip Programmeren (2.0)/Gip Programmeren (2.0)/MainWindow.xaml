@@ -110,10 +110,10 @@
                                 <Grid Background="#FFE5E5E5">
                                     <Label Content="Scan kaart of selecteer een leerling waarvan u de kaart wilt wissen." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top"/>
-                                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                                    <ListBox Name="lstLeerling" HorizontalAlignment="Left" Height="218" Margin="10,57,0,0" VerticalAlignment="Top" Width="175"/>
+                                    <TextBox Name="txtWissen" HorizontalAlignment="Left" Height="23" Margin="65,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                    <ListBox Name="lstLeerling" HorizontalAlignment="Left" Height="218" Margin="10,57,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="lstLeerling_SelectionChanged"/>
                                     <Button Content="Wissen" HorizontalAlignment="Left" Margin="311,255,0,0" VerticalAlignment="Top" Width="75"/>
-                                    <Image HorizontalAlignment="Left" Height="100" Margin="237,26,0,0" VerticalAlignment="Top" Width="100"/>
+                                    <Image Name="IMGWissen" HorizontalAlignment="Left" Height="100" Margin="237,26,0,0" VerticalAlignment="Top" Width="100"/>
                                     <Label Content="Naam:" HorizontalAlignment="Left" Margin="190,131,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Achternaam:" HorizontalAlignment="Left" Margin="190,157,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="190,183,0,0" VerticalAlignment="Top"/>
@@ -130,11 +130,11 @@
                 <TabItem Header="Instellingen">
                     <Grid Background="#FFE5E5E5">
                         <Grid HorizontalAlignment="Left" Height="145" Margin="10,168,0,0" VerticalAlignment="Top" Width="376">
-                            <Image HorizontalAlignment="Left" Height="100" Margin="27,0,0,0" VerticalAlignment="Top" Width="83" Source="/Images\1300124.jpg" RenderTransformOrigin="0.637,0.508"/>
-                            <Image HorizontalAlignment="Left" Height="100" Margin="146,0,0,0" VerticalAlignment="Top" Width="71" Source="/Images\1300154.jpg"/>
-                            <Image HorizontalAlignment="Left" Height="100" Margin="266,0,0,0" VerticalAlignment="Top" Width="100"/>
+                            <Image HorizontalAlignment="Left" Height="100" Margin="27,0,0,0" VerticalAlignment="Top" Width="83" Source="C:\Users\Dylan\Source\Repos\Gip-2.0\Gip Programmeren (2.0)\Gip Programmeren (2.0)\Images\1300124.jpg" RenderTransformOrigin="0.637,0.508"/>
+                            <Image HorizontalAlignment="Left" Height="100" Margin="158,0,0,0" VerticalAlignment="Top" Width="71" Source="C:\Users\Dylan\Source\Repos\Gip-2.0\Gip Programmeren (2.0)\Gip Programmeren (2.0)\Images\1300154.jpg"/>
+                            <Image HorizontalAlignment="Left" Height="100" Margin="284,0,0,0" VerticalAlignment="Top" Width="67" Source="C:\Users\Dylan\Source\Repos\Gip-2.0\Gip Programmeren (2.0)\Gip Programmeren (2.0)\Images\1400089.jpg"/>
                             <Label Content="Denzel Ooms" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
-                            <Label Content="Olivier Pugin" HorizontalAlignment="Left" Margin="132,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
+                            <Label Content="Olivier Pugin" HorizontalAlignment="Left" Margin="140,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
                             <Label Content="Dylan hulin" HorizontalAlignment="Left" Margin="266,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
                         </Grid>
                         <Label Content="Made with ♥ by" HorizontalAlignment="Left" Margin="120,125,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Calibri" FontWeight="Bold"/>
