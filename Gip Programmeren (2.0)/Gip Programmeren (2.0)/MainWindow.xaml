@@ -5,22 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gip_Programmeren__2._0_"
         mc:Ignorable="d"
-        Title="MainWindow" Height="682.5" Width="1054.5">
+        Title="MainWindow" Height="682.5" Width="1054.5" Background="White">
     <Viewbox>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="107*"/>
                 <RowDefinition Height="212*"/>
             </Grid.RowDefinitions>
-            <TabControl HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="517" TabStripPlacement="Left" Grid.RowSpan="2">
-                <TabItem Header="Overzicht">
+            <TabControl HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="517" TabStripPlacement="Left" Grid.RowSpan="2" Background="#FF7C4242">
+                <TabItem Header="Overzicht" BorderBrush="#FFACACAC" Foreground="Black">
                     <TabItem.Background>
                         <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                             <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                            <GradientStop Color="White" Offset="1"/>
+                            <GradientStop Color="#FF6C4949" Offset="1"/>
                         </LinearGradientBrush>
                     </TabItem.Background>
-                    <Grid Background="#FFE5E5E5">
+                    <Grid Background="#FF666060">
                         <Image Name="imgFoto1" HorizontalAlignment="Left" Height="147" Margin="10,28,0,0" VerticalAlignment="Top" Width="112">
                             <Image.OpacityMask>
                                 <ImageBrush/>
@@ -36,10 +36,10 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Beheer Leerlingen">
-                    <Grid Background="#FFE5E5E5">
+                    <Grid Background="White">
                         <TabControl HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
                             <TabItem Header="Weekindeling">
-                                <Grid Background="#FFE5E5E5">
+                                <Grid Background="#FF666060">
                                     <ListBox Name="lstWeekindelingLeerlingen" HorizontalAlignment="Left" Height="220" Margin="10,55,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="lstWeekindelingLeerlingen_SelectionChanged"/>
                                     <CheckBox Name="chkMaandag" Content="Maandag" HorizontalAlignment="Left" Margin="195,55,0,0" VerticalAlignment="Top" Click="chkMaandag_Click"/>
                                     <CheckBox Name="chkDinsdag" Content="Dinsdag" HorizontalAlignment="Left" Margin="195,75,0,0" VerticalAlignment="Top" Click="chkDinsdag_Click"/>
@@ -52,7 +52,7 @@
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Aanwezigheden">
-                                <Grid Background="#FFE5E5E5">
+                                <Grid Background="#FF666060">
                                     <ListBox Name="lstLeerlinglijst" HorizontalAlignment="Left" Height="205" Margin="10,70,0,0" VerticalAlignment="Top" Width="183" SelectionChanged="lstLeerlinglijst_SelectionChanged"/>
                                     <ListBox Name="lstAanwezigheidslijst" HorizontalAlignment="Left" Height="205" Margin="203,70,0,0" VerticalAlignment="Top" Width="183" SelectionChanged="lstAanwezigheidslijst_SelectionChanged"/>
                                     <RadioButton Name="rbAanwezig" Content="Aanwezig" HorizontalAlignment="Left" Margin="206,10,0,0" VerticalAlignment="Top" Checked="rbAanwezig_Checked"/>
@@ -68,7 +68,7 @@
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Toevoegen&#xD;&#xA;Toevoegen" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="69" Margin="-1,0,0,0">
-                                <Grid Background="#FFE5E5E5">
+                                <Grid Background="#FF666060">
                                     <TextBox Name="txtVoornaam" HorizontalAlignment="Left" Height="23" Margin="266,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                     <TextBox Name="txtAchternaam" HorizontalAlignment="Left" Height="23" Margin="266,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                     <TextBox Name="txtKlasnummer" HorizontalAlignment="Left" Height="23" Margin="266,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -95,16 +95,16 @@
                     <Grid Background="#FFE5E5E5">
                         <TabControl HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
                             <TabItem Header="Linken">
-                                <Grid Background="#FFE5E5E5"/>
+                                <Grid Background="#FF666060"/>
                             </TabItem>
                             <TabItem Header="Wissen">
-                                <Grid Background="#FFE5E5E5"/>
+                                <Grid Background="#FF666060"/>
                             </TabItem>
                         </TabControl>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Instellingen">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FF666060"/>
                 </TabItem>
             </TabControl>
             <Image Name="logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="5,192,0,0" Grid.Row="1" Source="http://ozcs-koepel.be/wp-content/uploads/2013/12/sintcordula-300x300.jpg"/>
