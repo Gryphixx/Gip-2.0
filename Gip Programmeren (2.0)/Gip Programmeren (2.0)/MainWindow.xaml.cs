@@ -32,6 +32,9 @@ namespace Gip_Programmeren__2._0_
         {
             InitializeComponent();
 
+            InsertPicturesInstellingen(img1300124, "1300124");
+            InsertPicturesInstellingen(img1300154, "1300154");
+            InsertPicturesInstellingen(img1400089, "1400089");
 
 
 
@@ -416,6 +419,16 @@ namespace Gip_Programmeren__2._0_
             lblKlas.Content = null;
             IMGWissen.Source = null;
 
+        }
+
+        private void InsertPicturesInstellingen(Image imgSetting, string strFileName)
+        {
+            string strPath;
+
+
+            strPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Images/", strFileName + ".jpg");
+            Uri imageUri = new Uri(strPath);
+            imgSetting.Source = new BitmapImage(imageUri);
         }
     }
 }
