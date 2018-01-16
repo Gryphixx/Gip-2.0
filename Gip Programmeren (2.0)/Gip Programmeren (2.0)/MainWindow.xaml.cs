@@ -24,6 +24,10 @@ namespace Gip_Programmeren__2._0_
     {
         static string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
         static MySqlConnection conn = new MySqlConnection(_conn);
+
+         List<Leerling> lstLeerlingLijst = new List<Leerling>();
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -226,6 +230,7 @@ namespace Gip_Programmeren__2._0_
 
         private void OpvullenDagInstelling()
         {
+          
             conn.Open();
             string _cmd = string.Format("SELECT * from leerling");
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
@@ -233,9 +238,13 @@ namespace Gip_Programmeren__2._0_
             while (dr.Read())
             {
                 Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
-                lstWeekindelingLeerlingen.Items.Add(objLeerling);
+                lstLeerlingLijst.Add(objLeerling);
             }
 
+            foreach (Leerling item in lstLeerlingLijst)
+            {
+                lstWeekindelingLeerlingen.Items.Add(item);
+            }
             conn.Close();
         }
 
@@ -251,7 +260,7 @@ namespace Gip_Programmeren__2._0_
                 cboDagKlassen.Items.Add(objKlas);
             }
             conn.Close();
-
+            
         }
 
         private void lstWeekindelingLeerlingen_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -347,9 +356,16 @@ namespace Gip_Programmeren__2._0_
 
         private void cboDagKlassen_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            cboDagKlassen.Items.Clear();
+            Klas objKlas = (Klas)cboDagKlassen.SelectedItem;
 
-
-
+            foreach (Leerling item in lstLeerlingLijst)
+            {
+                if (item.intKlasnummer == objKlas.intJaar)
+                {
+                    lstWeekindelingLeerlingen.Items.Add(item);
+                }
+            }
 
         }
 
