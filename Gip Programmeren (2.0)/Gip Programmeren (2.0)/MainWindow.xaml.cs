@@ -22,7 +22,7 @@ namespace Gip_Programmeren__2._0_
     /// </summary>
     public partial class MainWindow : Window
     {
-        static string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
+        static string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denel");
         static MySqlConnection conn = new MySqlConnection(_conn);
         public MainWindow()
         {
@@ -319,8 +319,7 @@ namespace Gip_Programmeren__2._0_
             MySqlDataReader dr = cmd.ExecuteReader();
             lstLeerlinglijst.Items.Clear();
             while (dr.Read())
-            {
-
+            {                
                 Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
                 lstLeerlinglijst.Items.Add(objLeerling);
             }
@@ -329,5 +328,18 @@ namespace Gip_Programmeren__2._0_
         }
 
         // Begin ToevoegInstelling
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            conn.Open();
+            string _cmd = string.Format("",txtVoornaam,txtAchternaam,txtKlasnummer,txtStamboeknummer,cboToevoegKlas.SelectedItem.ToString(),chkMa.IsChecked,chkDi.IsChecked,chkDo.IsChecked,chkVr.IsChecked);
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+
+        }
+
+        private void btnImport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
