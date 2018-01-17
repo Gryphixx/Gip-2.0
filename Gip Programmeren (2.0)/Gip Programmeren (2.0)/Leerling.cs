@@ -74,7 +74,7 @@ namespace GIP_Programmeren
             get { return _vrijdag; }
             set { _vrijdag = value; }
         }
-        public string intKlas
+        public string strKlas
         {
             get { return _klas; }
             set { _klas = value; }
@@ -111,7 +111,7 @@ namespace GIP_Programmeren
         {
             strVoornaam = _Voornaam;
             strAchternaam = _Achternaam;
-            intKlas = _Klas;
+            strKlas = _Klas;
             intKlasnummer = _klasnummer;
         }
 

@@ -259,7 +259,7 @@ namespace Gip_Programmeren__2._0_
             MySqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                Klas objKlas = new Klas(dr[0].ToString(), (int)dr[1], Convert.ToDateTime(dr[2]));
+                Klas objKlas = new Klas(dr[0].ToString(), Convert.ToDateTime(dr[2]), (int)dr[0]);
                 cboDagKlassen.Items.Add(objKlas);
             }
             conn.Close();
@@ -455,5 +455,8 @@ namespace Gip_Programmeren__2._0_
             Uri imageUri = new Uri(strPath);
             imgSetting.Source = new BitmapImage(imageUri);
         }
+
+
+
     }
 }
