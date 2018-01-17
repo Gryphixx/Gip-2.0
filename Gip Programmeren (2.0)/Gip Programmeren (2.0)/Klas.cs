@@ -10,11 +10,12 @@ namespace GIP_Programmeren
 {
     class Klas
     {
-        private DateTime _tijdstip;
+        private TimeSpan _tijdstip;
         private String _richting;
         private int _jaar;
+        private int _id;
 
-        public DateTime dtTijdstip
+        public TimeSpan dtTijdstip
         {
             get { return _tijdstip; }
             set { _tijdstip = value; }
@@ -31,17 +32,23 @@ namespace GIP_Programmeren
             get { return _jaar; }
             set { _jaar = value; }
         }
+        public int intId
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
 
         public override string ToString()
         {
             return _richting;
         }
 
-        public Klas(String richting, int jaar, DateTime tijdstip)
+        public Klas(String richting, TimeSpan tijdstip, int id)
         {
-            _richting = richting;
-            _tijdstip = tijdstip;
-            _jaar = jaar;
+           strRichting = richting;
+           dtTijdstip = tijdstip;
+            intJaar = Convert.ToInt16(richting.Substring(0, 1));
+            intId = id;
         }
 
         public Klas()

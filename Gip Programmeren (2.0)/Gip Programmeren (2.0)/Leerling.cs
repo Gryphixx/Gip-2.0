@@ -74,7 +74,7 @@ namespace GIP_Programmeren
             get { return _vrijdag; }
             set { _vrijdag = value; }
         }
-        public string intKlas
+        public string strKlas
         {
             get { return _klas; }
             set { _klas = value; }
@@ -90,7 +90,7 @@ namespace GIP_Programmeren
             strPassword = _strPW;
         }
 
-        public Leerling(string _idLeerling, string _Voornaam, string _Achternaam, int _Klasnummer, bool _Maandag, bool _Dinsdag, bool _Donderdag, bool _Vrijdag)
+        public Leerling(string _idLeerling, string _Voornaam, string _Achternaam, int _Klasnummer, bool _Maandag, bool _Dinsdag, bool _Donderdag, bool _Vrijdag, string _Klas)
         {
             strIdnummer = _idLeerling;
             strVoornaam = _Voornaam;
@@ -100,6 +100,7 @@ namespace GIP_Programmeren
             blDinsdag = _Dinsdag;
             blDonderdag = _Donderdag;
             blVrijdag = _Vrijdag;
+            strKlas = _Klas;
 
         }
         public Leerling(string _Voornaam, string _Achternaam)
@@ -111,7 +112,7 @@ namespace GIP_Programmeren
         {
             strVoornaam = _Voornaam;
             strAchternaam = _Achternaam;
-            intKlas = _Klas;
+            strKlas = _Klas;
             intKlasnummer = _klasnummer;
         }
 
