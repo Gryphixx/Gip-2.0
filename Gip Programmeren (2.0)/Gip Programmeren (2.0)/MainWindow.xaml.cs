@@ -375,12 +375,25 @@ namespace Gip_Programmeren__2._0_
 
         // Begin ToevoegInstelling
 
+        private void OpvullenCboKlassen()
+        {
+            conn.Open();
+            string _cmd = String.Format("SELECT * FROM arduino.klassen;");
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Klas objKlas = new Klas();
+                cboToevoegKlas.Items.Add(objKlas);
+            }
+            conn.Close();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             conn.Open();
-            string _cmd = string.Format("", txtVoornaam, txtAchternaam, txtKlasnummer, txtStamboeknummer, cboToevoegKlas.SelectedItem.ToString(), chkMa.IsChecked, chkDi.IsChecked, chkDo.IsChecked, chkVr.IsChecked);
+            string _cmd = string.Format("INSERT INTO `arduino`.`leerling` (`idLeerlingen`, `LeerlingVNaam`, `LeerlingANaam`, `LeerlingKlasNummer`, `Monday`, `Tuesday`, `Thursday`, `Friday`, `klassen_idKlassen`) VALUES ('{4}', '{2}', '{1}', '{3}', '{6}', '{7}', '{8}', '{9}', '{5}');", txtVoornaam, txtAchternaam, txtKlasnummer, txtStamboeknummer, cboDagKlassen.SelectedItem.ToString(), chkMa.IsChecked, chkDi.IsChecked, chkDo.IsChecked, chkVr.IsChecked);
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
-
         }
 
         private void btnImport_Click(object sender, RoutedEventArgs e)
@@ -437,7 +450,6 @@ namespace Gip_Programmeren__2._0_
         private void InsertPicturesInstellingen(Image imgSetting, string strFileName)
         {
             string strPath;
-
 
             strPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Images/", strFileName + ".jpg");
             Uri imageUri = new Uri(strPath);

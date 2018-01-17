@@ -70,7 +70,6 @@
     </Compile>
     <Compile Include="Kaart.cs" />
     <Compile Include="Klas.cs" />
-    <Compile Include="Klassen.cs" />
     <Compile Include="Leerling.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
