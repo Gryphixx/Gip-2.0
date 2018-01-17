@@ -383,7 +383,7 @@ namespace Gip_Programmeren__2._0_
             MySqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                Klas objKlas = new Klas();
+                Klas objKlas = new Klas(dr[1].ToString(),Convert.ToDateTime(dr[2]),(int)dr[0]);
                 cboToevoegKlas.Items.Add(objKlas);
             }
             conn.Close();
