@@ -466,9 +466,10 @@ namespace Gip_Programmeren__2._0_
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            Popup Popup = new Popup();
+            Popup.Show();
 
 
-            
         }
 
 
