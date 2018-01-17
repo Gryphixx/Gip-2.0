@@ -57,6 +57,7 @@ namespace Gip_Programmeren__2._0_
                 OpvullenLeerlingLijst();
                 OpvullenDagInstelling();
                 OpvullenWissenLeerlingLijst();
+                OpvullenCboKlassen();
             }
             else
             {
@@ -259,7 +260,7 @@ namespace Gip_Programmeren__2._0_
             MySqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                Klas objKlas = new Klas(dr[0].ToString(), Convert.ToDateTime(dr[2]), (int)dr[0]);
+                Klas objKlas = new Klas(dr[0].ToString(), (TimeSpan)dr[2], (int)dr[0]);
                 cboDagKlassen.Items.Add(objKlas);
             }
             conn.Close();
@@ -383,7 +384,7 @@ namespace Gip_Programmeren__2._0_
             MySqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                Klas objKlas = new Klas();
+                Klas objKlas = new Klas(dr[1].ToString(),(TimeSpan)dr[2],(int)dr[0]);
                 cboToevoegKlas.Items.Add(objKlas);
             }
             conn.Close();
@@ -392,7 +393,8 @@ namespace Gip_Programmeren__2._0_
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             conn.Open();
-            string _cmd = string.Format("INSERT INTO `arduino`.`leerling` (`idLeerlingen`, `LeerlingVNaam`, `LeerlingANaam`, `LeerlingKlasNummer`, `Monday`, `Tuesday`, `Thursday`, `Friday`, `klassen_idKlassen`) VALUES ('{4}', '{2}', '{1}', '{3}', '{6}', '{7}', '{8}', '{9}', '{5}');", txtVoornaam, txtAchternaam, txtKlasnummer, txtStamboeknummer, cboDagKlassen.SelectedItem.ToString(), chkMa.IsChecked, chkDi.IsChecked, chkDo.IsChecked, chkVr.IsChecked);
+            Klas objKlas = (Klas)cboToevoegKlas.SelectedItem;
+            string _cmd = string.Format("INSERT INTO `arduino`.`leerling` (`idLeerlingen`, `LeerlingVNaam`, `LeerlingANaam`, `LeerlingKlasNummer`, `Monday`, `Tuesday`, `Thursday`, `Friday`, `klassen_idKlassen`) VALUES ('{4}', '{2}', '{1}', '{3}', '{6}', '{7}', '{8}', '{9}', '{5}');", txtVoornaam, txtAchternaam, txtKlasnummer, txtStamboeknummer, objKlas.intId, chkMa.IsChecked, chkDi.IsChecked, chkDo.IsChecked, chkVr.IsChecked);
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
         }
 
