@@ -426,7 +426,7 @@ namespace Gip_Programmeren__2._0_
             string strPath;
 
 
-            strPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Images/", strFileName + ".jpg");
+            strPath = System.IO.Path.Combine(Environment.SystemDirectory, "Images/", strFileName + ".jpg");
             Uri imageUri = new Uri(strPath);
             imgSetting.Source = new BitmapImage(imageUri);
         }
