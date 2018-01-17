@@ -74,7 +74,7 @@ namespace Gip_Programmeren__2._0_
             MySqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
                 lstLeerlinglijst.Items.Add(objLeerling);
             }
 
@@ -91,7 +91,7 @@ namespace Gip_Programmeren__2._0_
             while (dr.Read())
             {
 
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
                 lstLeerlinglijst.Items.Add(objLeerling);
             }
 
@@ -222,7 +222,7 @@ namespace Gip_Programmeren__2._0_
             while (dr.Read())
             {
 
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
                 lstWeekindelingLeerlingen.Items.Add(objLeerling);
             }
 
@@ -240,7 +240,7 @@ namespace Gip_Programmeren__2._0_
             MySqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
                 lstLeerlingLijst.Add(objLeerling);
             }
 
@@ -350,7 +350,7 @@ namespace Gip_Programmeren__2._0_
             while (dr.Read())
             {
 
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
                 lstLeerlinglijst.Items.Add(objLeerling);
             }
 
@@ -400,7 +400,7 @@ namespace Gip_Programmeren__2._0_
             MySqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
                 lstLeerling.Items.Add(objLeerling);
             }
 
@@ -417,7 +417,7 @@ namespace Gip_Programmeren__2._0_
             while (dr.Read())
             {
 
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
                 lstLeerling.Items.Add(objLeerling);
             }
 
@@ -432,6 +432,14 @@ namespace Gip_Programmeren__2._0_
             lblKlas.Content = null;
             IMGWissen.Source = null;
 
+            Leerling objLeerling = (Leerling)lstLeerling.SelectedItem;
+            lblNaam.Content = objLeerling.strVoornaam;
+            lblAchternaam.Content = objLeerling.strAchternaam;
+            lblKlas.Content = objLeerling.strKlas;
+            lblNummer.Content = objLeerling.intKlasnummer;
+
+           
+
         }
 
         private void InsertPicturesInstellingen(Image imgSetting, string strFileName)
@@ -441,7 +449,14 @@ namespace Gip_Programmeren__2._0_
 
             strPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Images/", strFileName + ".jpg");
             Uri imageUri = new Uri(strPath);
-            imgSetting.Source = new BitmapImage(imageUri);
+            //imgSetting.Source = new BitmapImage(imageUri);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+
+            
         }
     }
 }
