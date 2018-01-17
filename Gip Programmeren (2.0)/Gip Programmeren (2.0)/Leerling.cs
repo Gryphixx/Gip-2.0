@@ -19,6 +19,7 @@ namespace GIP_Programmeren
         private bool _dinsdag;
         private bool _donderdag;
         private bool _vrijdag;
+        private string _klas;
 
         public string strIdnummer
         {
@@ -73,6 +74,11 @@ namespace GIP_Programmeren
             get { return _vrijdag; }
             set { _vrijdag = value; }
         }
+        public string intKlas
+        {
+            get { return _klas; }
+            set { _klas = value; }
+        }
 
         public override string ToString()
         {
@@ -100,6 +106,13 @@ namespace GIP_Programmeren
         {
             strVoornaam = _Voornaam;
             strAchternaam = _Achternaam;
+        }
+        public Leerling(string _Voornaam, string _Achternaam, string _Klas, int _Klasnummer)
+        {
+            strVoornaam = _Voornaam;
+            strAchternaam = _Achternaam;
+            intKlas = _Klas;
+            intKlasnummer = _klasnummer;
         }
 
 

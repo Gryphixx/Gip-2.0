@@ -24,10 +24,17 @@ namespace Gip_Programmeren__2._0_
     {
         static string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
         static MySqlConnection conn = new MySqlConnection(_conn);
+
+         List<Leerling> lstLeerlingLijst = new List<Leerling>();
+
+
         public MainWindow()
         {
             InitializeComponent();
 
+            InsertPicturesInstellingen(img1300124, "1300124");
+            InsertPicturesInstellingen(img1300154, "1300154");
+            InsertPicturesInstellingen(img1400089, "1400089");
 
 
 
@@ -226,6 +233,7 @@ namespace Gip_Programmeren__2._0_
 
         private void OpvullenDagInstelling()
         {
+          
             conn.Open();
             string _cmd = string.Format("SELECT * from leerling");
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
@@ -233,9 +241,13 @@ namespace Gip_Programmeren__2._0_
             while (dr.Read())
             {
                 Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]));
-                lstWeekindelingLeerlingen.Items.Add(objLeerling);
+                lstLeerlingLijst.Add(objLeerling);
             }
 
+            foreach (Leerling item in lstLeerlingLijst)
+            {
+                lstWeekindelingLeerlingen.Items.Add(item);
+            }
             conn.Close();
         }
 
@@ -251,7 +263,7 @@ namespace Gip_Programmeren__2._0_
                 cboDagKlassen.Items.Add(objKlas);
             }
             conn.Close();
-
+            
         }
 
         private void lstWeekindelingLeerlingen_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -347,11 +359,19 @@ namespace Gip_Programmeren__2._0_
 
         private void cboDagKlassen_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            cboDagKlassen.Items.Clear();
+            Klas objKlas = (Klas)cboDagKlassen.SelectedItem;
 
-
-
+            foreach (Leerling item in lstLeerlingLijst)
+            {
+                if (item.intKlasnummer == objKlas.intJaar)
+                {
+                    lstWeekindelingLeerlingen.Items.Add(item);
+                }
+            }
 
         }
+
 
         // Begin ToevoegInstelling
 
@@ -390,7 +410,7 @@ namespace Gip_Programmeren__2._0_
         private void txtLeerling_KeyUp(object sender, KeyEventArgs e)
         {
             conn.Open();
-            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%' ", txtWeekindelingNaam.Text);
+            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%' ", txtWissen.Text);
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
             MySqlDataReader dr = cmd.ExecuteReader();
             lstLeerling.Items.Clear();
@@ -404,5 +424,24 @@ namespace Gip_Programmeren__2._0_
             conn.Close();
         }
 
+        private void lstLeerling_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lblNaam.Content = null;
+            lblAchternaam.Content = null;
+            lblNummer.Content = null;
+            lblKlas.Content = null;
+            IMGWissen.Source = null;
+
+        }
+
+        private void InsertPicturesInstellingen(Image imgSetting, string strFileName)
+        {
+            string strPath;
+
+
+            strPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Images/", strFileName + ".jpg");
+            Uri imageUri = new Uri(strPath);
+            imgSetting.Source = new BitmapImage(imageUri);
+        }
     }
 }

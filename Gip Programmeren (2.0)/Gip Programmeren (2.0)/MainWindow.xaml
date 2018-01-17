@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gip_Programmeren__2._0_"
         mc:Ignorable="d"
-        Title="MainWindow" Height="682.5" Width="1054.5">
+        Title="Aanwezigheidssysteem" Height="682.5" Width="1054.5">
     <Viewbox>
         <Grid>
             <Grid.RowDefinitions>
@@ -40,9 +40,7 @@
                         <TabControl HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
                             <TabItem Header="Weekindeling">
                                 <Grid Background="#FFE5E5E5">
-                                    <ListBox Name="lstWeekindelingLeerlingen" HorizontalAlignment="Left" Height="220" Margin="10,55,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="lstWeekindelingLeerlingen_SelectionChanged">
-                                        <ListBoxItem Content="ListBoxItem"/>
-                                    </ListBox>
+                                    <ListBox Name="lstWeekindelingLeerlingen" HorizontalAlignment="Left" Height="220" Margin="10,55,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="lstWeekindelingLeerlingen_SelectionChanged"/>
                                     <CheckBox Name="chkMaandag" Content="Maandag" HorizontalAlignment="Left" Margin="195,55,0,0" VerticalAlignment="Top" Click="chkMaandag_Click"/>
                                     <CheckBox Name="chkDinsdag" Content="Dinsdag" HorizontalAlignment="Left" Margin="195,75,0,0" VerticalAlignment="Top" Click="chkDinsdag_Click"/>
                                     <CheckBox Name="chkDonderdag" Content="Donderdag" HorizontalAlignment="Left" Margin="195,95,0,0" VerticalAlignment="Top" Click="chkDonderdag_Click"/>
@@ -82,12 +80,12 @@
                                     <TextBox Name="txtStamboeknummer" HorizontalAlignment="Left" Height="23" Margin="266,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                     <ComboBox Name="cboToevoegKlas" HorizontalAlignment="Left" Margin="266,122,0,0" VerticalAlignment="Top" Width="120"/>
                                     <Image HorizontalAlignment="Left" Height="134" Margin="10,10,0,0" VerticalAlignment="Top" Width="112"/>
-                                    <Button Name="btnImport" Content="Import" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" Width="112" Click="btnImport_Click"/>
+                                    <Button Name="btnImport" Content="Import" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" Width="112"/>
                                     <CheckBox Name="chkMa" Content="Ma" HorizontalAlignment="Left" Margin="132,152,0,0" VerticalAlignment="Top" Height="28" Width="42"/>
                                     <CheckBox Name="chkDi" Content="Di" HorizontalAlignment="Left" Margin="179,152,0,0" VerticalAlignment="Top" Height="28" Width="36"/>
                                     <CheckBox Name="chkDo" Content="Do" HorizontalAlignment="Left" Margin="219,152,0,0" VerticalAlignment="Top" Height="28" Width="41"/>
                                     <CheckBox Name="chkVr" Content="Vr" HorizontalAlignment="Left" Margin="266,152,0,0" VerticalAlignment="Top" Height="28" Width="36"/>
-                                    <Button Content="Voeg Toe" HorizontalAlignment="Left" Margin="311,149,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+                                    <Button Content="Voeg Toe" HorizontalAlignment="Left" Margin="311,149,0,0" VerticalAlignment="Top" Width="75"/>
                                     <Label Content="Voornaam:" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Achternaam:" HorizontalAlignment="Left" Margin="132,38,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Klasnummer:" HorizontalAlignment="Left" Margin="132,66,0,0" VerticalAlignment="Top"/>
@@ -102,16 +100,20 @@
                     <Grid Background="#FFE5E5E5">
                         <TabControl HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
                             <TabItem Header="Linken">
-                                <Grid Background="#FFE5E5E5"/>
+                                <Grid Background="#FFE5E5E5">
+                                    
+                                    
+
+                                </Grid>
                             </TabItem>
                             <TabItem Header="Wissen">
                                 <Grid Background="#FFE5E5E5">
                                     <Label Content="Scan kaart of selecteer een leerling waarvan u de kaart wilt wissen." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top"/>
-                                    <TextBox HorizontalAlignment="Left" Height="23" Margin="65,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                                    <ListBox Name="lstLeerling" HorizontalAlignment="Left" Height="218" Margin="10,57,0,0" VerticalAlignment="Top" Width="175"/>
+                                    <TextBox Name="txtWissen" HorizontalAlignment="Left" Height="23" Margin="65,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                                    <ListBox Name="lstLeerling" HorizontalAlignment="Left" Height="218" Margin="10,57,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="lstLeerling_SelectionChanged"/>
                                     <Button Content="Wissen" HorizontalAlignment="Left" Margin="311,255,0,0" VerticalAlignment="Top" Width="75"/>
-                                    <Image HorizontalAlignment="Left" Height="100" Margin="237,26,0,0" VerticalAlignment="Top" Width="100"/>
+                                    <Image Name="IMGWissen" HorizontalAlignment="Left" Height="100" Margin="237,26,0,0" VerticalAlignment="Top" Width="100"/>
                                     <Label Content="Naam:" HorizontalAlignment="Left" Margin="190,131,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Achternaam:" HorizontalAlignment="Left" Margin="190,157,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="190,183,0,0" VerticalAlignment="Top"/>
@@ -126,7 +128,20 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Instellingen">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5">
+                        <Grid HorizontalAlignment="Left" Height="145" Margin="10,168,0,0" VerticalAlignment="Top" Width="376">
+                            <Image Name="img1300124" HorizontalAlignment="Left" Height="100" Margin="27,0,0,0" VerticalAlignment="Top" Width="83"/>
+                            <Image Name="img1300154" HorizontalAlignment="Left" Height="100" Margin="158,0,0,0" VerticalAlignment="Top" Width="71"/>
+                            <Image Name="img1400089" HorizontalAlignment="Left" Height="100" Margin="284,0,0,0" VerticalAlignment="Top" Width="67"/>
+                            <Label Content="Denzel Ooms" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
+                            <Label Content="Olivier Pugin" HorizontalAlignment="Left" Margin="140,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
+                            <Label Content="Dylan hulin" HorizontalAlignment="Left" Margin="266,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
+                        </Grid>
+                        <Label Content="Made with ♥ by" HorizontalAlignment="Left" Margin="120,125,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Calibri" FontWeight="Bold"/>
+                    </Grid>
+
+
+
                 </TabItem>
             </TabControl>
             <Image Name="logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="5,192,0,0" Grid.Row="1" Source="http://ozcs-koepel.be/wp-content/uploads/2013/12/sintcordula-300x300.jpg"/>
