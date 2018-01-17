@@ -104,6 +104,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Foto%27s\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
