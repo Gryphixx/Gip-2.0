@@ -10,12 +10,12 @@ namespace GIP_Programmeren
 {
     class Klas
     {
-        private DateTime _tijdstip;
+        private TimeSpan _tijdstip;
         private String _richting;
         private int _jaar;
         private int _id;
 
-        public DateTime dtTijdstip
+        public TimeSpan dtTijdstip
         {
             get { return _tijdstip; }
             set { _tijdstip = value; }
@@ -43,7 +43,7 @@ namespace GIP_Programmeren
             return _richting;
         }
 
-        public Klas(String richting, DateTime tijdstip, int id)
+        public Klas(String richting, TimeSpan tijdstip, int id)
         {
            strRichting = richting;
            dtTijdstip = tijdstip;
