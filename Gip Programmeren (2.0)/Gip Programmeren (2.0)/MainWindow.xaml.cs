@@ -355,6 +355,19 @@ namespace Gip_Programmeren__2._0_
 
         // Begin ToevoegInstelling
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            conn.Open();
+            string _cmd = string.Format("", txtVoornaam, txtAchternaam, txtKlasnummer, txtStamboeknummer, cboToevoegKlas.SelectedItem.ToString(), chkMa.IsChecked, chkDi.IsChecked, chkDo.IsChecked, chkVr.IsChecked);
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+
+        }
+
+        private void btnImport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         // Begin Beheer Kaarten
 
         // Begin Wissen
