@@ -40,15 +40,15 @@ namespace GIP_Programmeren
 
         public override string ToString()
         {
-            return _richting;
+            return strRichting;
         }
 
         public Klas(String richting, TimeSpan tijdstip, int id)
         {
            strRichting = richting;
            dtTijdstip = tijdstip;
-            intJaar = Convert.ToInt16(richting.Substring(0, 1));
-            intId = id;
+           intJaar = Convert.ToInt16(richting.Substring(0, 1));
+           intId = id;
         }
 
         public Klas()
