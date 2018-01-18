@@ -36,6 +36,7 @@ namespace Gip_Programmeren__2._0_
             InsertPicturesInstellingen(img1300154, "1300154");
             InsertPicturesInstellingen(img1400089, "1400089");
 
+            ScannerStatus.Fill = Brushes.Red;
 
 
             bool result = false;
@@ -470,6 +471,7 @@ namespace Gip_Programmeren__2._0_
         {
             Popup Popup = new Popup();
             Popup.Show();
+            
 
 
         }
