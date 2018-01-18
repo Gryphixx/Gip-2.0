@@ -32,11 +32,14 @@ namespace Gip_Programmeren__2._0_
         {
             InitializeComponent();
 
-            InsertPicturesInstellingen(img1300124, "1300124");
-            InsertPicturesInstellingen(img1300154, "1300154");
-            InsertPicturesInstellingen(img1400089, "1400089");
+            Uri uri = new Uri("./fotos/1300124.jpg", UriKind.Relative);
+            img1300124.Source = new BitmapImage(uri);
+            uri = new Uri("./fotos/1300154.jpg", UriKind.Relative);
+            img1300154.Source = new BitmapImage(uri);
+            uri = new Uri("./fotos/1400089.jpg", UriKind.Relative);          
+            img1400089.Source = new BitmapImage(uri);
 
-
+            //Nieuwe netwerk voor deze foto's want als de foto's verwijderd worden of veranderd zijn gaat de code niet werken of heb je andere fotos
 
             bool result = false;
             MySqlConnection connection = new MySqlConnection(_conn);
@@ -447,13 +450,18 @@ namespace Gip_Programmeren__2._0_
             lblKlas.Content = null;
             IMGWissen.Source = null;
 
+            
             Leerling objLeerling = (Leerling)lstLeerling.SelectedItem;
+            string strPath = String.Format("//hubble/leerlingfotos$/{0}.jpg", objLeerling.strIdnummer);
             lblNaam.Content = objLeerling.strVoornaam;
             lblAchternaam.Content = objLeerling.strAchternaam;
             lblKlas.Content = objLeerling.strKlas;
             lblNummer.Content = objLeerling.intKlasnummer;
-
+            Uri  uri = new Uri(strPath, UriKind.Absolute);
+            IMGWissen.Source = new BitmapImage(uri);
            
+         
+
 
         }
 
@@ -468,7 +476,9 @@ namespace Gip_Programmeren__2._0_
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            Leerling objLeerling = (Leerling)lstLeerling.SelectedItem;
             Popup Popup = new Popup();
+            //Popup.intIDLeerling = objLeerling.strIdnummer;
             Popup.Show();
 
 

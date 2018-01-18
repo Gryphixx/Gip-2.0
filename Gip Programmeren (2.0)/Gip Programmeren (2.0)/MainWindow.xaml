@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gip_Programmeren__2._0_"
         mc:Ignorable="d"
-        Title="Aanwezigheidssysteem" Height="682.5" Width="1054.5">
+        Title="Aanwezigheidssysteem" Height="682.5" Width="1054.5"
+        WindowStartupLocation ="CenterScreen">
     <Viewbox>
         <Grid>
             <Grid.RowDefinitions>
@@ -85,7 +86,7 @@
                                     <CheckBox Name="chkDi" Content="Di" HorizontalAlignment="Left" Margin="179,152,0,0" VerticalAlignment="Top" Height="28" Width="36"/>
                                     <CheckBox Name="chkDo" Content="Do" HorizontalAlignment="Left" Margin="219,152,0,0" VerticalAlignment="Top" Height="28" Width="41"/>
                                     <CheckBox Name="chkVr" Content="Vr" HorizontalAlignment="Left" Margin="266,152,0,0" VerticalAlignment="Top" Height="28" Width="36"/>
-                                    <Button Content="Voeg Toe" HorizontalAlignment="Left" Margin="311,149,0,0" VerticalAlignment="Top" Width="75"/>
+                                    <Button Content="Voeg Toe" HorizontalAlignment="Left" Margin="311,149,0,0" VerticalAlignment="Top" Width="75" />
                                     <Label Content="Voornaam:" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Achternaam:" HorizontalAlignment="Left" Margin="132,38,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Klasnummer:" HorizontalAlignment="Left" Margin="132,66,0,0" VerticalAlignment="Top"/>
@@ -113,7 +114,7 @@
                                     <TextBox Name="txtWissen" HorizontalAlignment="Left" Height="23" Margin="65,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                                     <ListBox Name="lstLeerling" HorizontalAlignment="Left" Height="218" Margin="10,57,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="lstLeerling_SelectionChanged"/>
                                     <Button Content="Wissen" HorizontalAlignment="Left" Margin="311,255,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-                                    <Image Name="IMGWissen" HorizontalAlignment="Left" Height="100" Margin="237,26,0,0" VerticalAlignment="Top" Width="100"/>
+                                    <Image  Name="IMGWissen" HorizontalAlignment="Left" Height="100" Margin="237,26,0,0" VerticalAlignment="Top" Width="100"/>
                                     <Label Content="Naam:" HorizontalAlignment="Left" Margin="190,131,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Achternaam:" HorizontalAlignment="Left" Margin="190,157,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="190,183,0,0" VerticalAlignment="Top"/>
@@ -138,6 +139,8 @@
                             <Label Content="Dilan hulin" HorizontalAlignment="Left" Margin="266,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
                         </Grid>
                         <Label Content="Made with ♥ by" HorizontalAlignment="Left" Margin="120,125,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Calibri" FontWeight="Bold"/>
+                        <Label Content="Contact:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                        <Label Content="hulindylan@hotmail.com" HorizontalAlignment="Left" Margin="64,10,0,0" VerticalAlignment="Top"/>
                     </Grid>
 
 
@@ -146,6 +149,7 @@
             </TabControl>
             <Image Name="logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="5,192,0,0" Grid.Row="1" Source="http://ozcs-koepel.be/wp-content/uploads/2013/12/sintcordula-300x300.jpg"/>
             <Label Content="Database status:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,81.5,0,0" Grid.Row="1" FontSize="11"/>
+            
             <Ellipse Name="StatusDatabase" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,90.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
@@ -156,6 +160,9 @@
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
+            <Label Content="Scanner Status:" HorizontalAlignment="Left" Margin="0,105.5,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="11"/>
+            <Ellipse Name="ScannerStatus" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,110.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.074,0.374"/>
+
 
 
 

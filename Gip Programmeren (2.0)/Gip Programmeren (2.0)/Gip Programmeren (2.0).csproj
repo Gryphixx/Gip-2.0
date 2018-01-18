@@ -110,11 +110,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Foto%27s\" />
-    <Folder Include="Images\" />
+    <Resource Include="Fotos\1300124.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="heremans.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fotos\1400089.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fotos\1300154.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

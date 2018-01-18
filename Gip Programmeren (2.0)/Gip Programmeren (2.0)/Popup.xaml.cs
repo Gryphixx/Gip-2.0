@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GIP_Programmeren;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,20 +20,25 @@ namespace Gip_Programmeren__2._0_
     /// </summary>
     public partial class Popup : Window
     {
+
+        public int intIDLeerling; 
+
+
+
         public Popup()
         {
             InitializeComponent();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
-            
         }
     }
 }
