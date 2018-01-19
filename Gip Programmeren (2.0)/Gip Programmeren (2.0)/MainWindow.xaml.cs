@@ -26,7 +26,7 @@ namespace Gip_Programmeren__2._0_
         static MySqlConnection conn = new MySqlConnection(_conn);
 
          List<Leerling> lstLeerlingLijst = new List<Leerling>();
-
+        //Opletten internet kan uitvallen en dan wil men nog steeds mensen opslaan.
 
         public MainWindow()
         {
@@ -478,7 +478,7 @@ namespace Gip_Programmeren__2._0_
         {
             Leerling objLeerling = (Leerling)lstLeerling.SelectedItem;
             Popup Popup = new Popup();
-            //Popup.intIDLeerling = objLeerling.strIdnummer;
+            Popup.strIDLeerling = objLeerling.strIdnummer;
             Popup.Show();
 
 
