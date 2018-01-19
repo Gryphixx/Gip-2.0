@@ -39,7 +39,7 @@ namespace Gip_Programmeren__2._0_
             uri = new Uri("./fotos/1400089.jpg", UriKind.Relative);          
             img1400089.Source = new BitmapImage(uri);
 
-            //Nieuwe netwerk voor deze foto's want als de foto's verwijderd worden of veranderd zijn gaat de code niet werken of heb je andere fotos
+            
 
             bool result = false;
             MySqlConnection connection = new MySqlConnection(_conn);
