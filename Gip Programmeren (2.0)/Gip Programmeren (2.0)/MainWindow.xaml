@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gip_Programmeren__2._0_"
         mc:Ignorable="d"
-        Title="Aanwezigheidssysteem" Height="682.5" Width="1054.5">
+        Title="Aanwezigheidssysteem" Height="682.5" Width="1054.5"
+        WindowStartupLocation ="CenterScreen">
     <Viewbox>
         <Grid>
             <Grid.RowDefinitions>
@@ -135,7 +136,7 @@
                             <Image Name="img1400089" HorizontalAlignment="Left" Height="100" Margin="284,0,0,0" VerticalAlignment="Top" Width="67"/>
                             <Label Content="Denzel Ooms" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
                             <Label Content="Olivier Pugin" HorizontalAlignment="Left" Margin="140,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
-                            <Label Content="Dylan hulin" HorizontalAlignment="Left" Margin="266,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
+                            <Label Content="Dilan hulin" HorizontalAlignment="Left" Margin="266,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
                         </Grid>
                         <Label Content="Made with ♥ by" HorizontalAlignment="Left" Margin="120,125,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Calibri" FontWeight="Bold"/>
                         <Label Content="Contact:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
@@ -148,6 +149,7 @@
             </TabControl>
             <Image Name="logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="5,192,0,0" Grid.Row="1" Source="http://ozcs-koepel.be/wp-content/uploads/2013/12/sintcordula-300x300.jpg"/>
             <Label Content="Database status:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,81.5,0,0" Grid.Row="1" FontSize="11"/>
+            
             <Ellipse Name="StatusDatabase" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,90.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
@@ -158,6 +160,9 @@
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
+            <Label Content="Scanner Status:" HorizontalAlignment="Left" Margin="0,105.5,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="11"/>
+            <Ellipse Name="ScannerStatus" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,110.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.074,0.374"/>
+
 
 
 
