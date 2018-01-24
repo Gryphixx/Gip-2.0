@@ -26,7 +26,7 @@ namespace Gip_Programmeren__2._0_
         static MySqlConnection conn = new MySqlConnection(_conn);
 
          List<Leerling> lstLeerlingLijst = new List<Leerling>();
-
+        //Opletten internet kan uitvallen en dan wil men nog steeds mensen opslaan.
 
         public MainWindow()
         {
@@ -39,7 +39,7 @@ namespace Gip_Programmeren__2._0_
             uri = new Uri("./fotos/1400089.jpg", UriKind.Relative);          
             img1400089.Source = new BitmapImage(uri);
 
-            //Nieuwe netwerk voor deze foto's want als de foto's verwijderd worden of veranderd zijn gaat de code niet werken of heb je andere fotos
+            
 
             bool result = false;
             MySqlConnection connection = new MySqlConnection(_conn);
@@ -61,6 +61,7 @@ namespace Gip_Programmeren__2._0_
                 OpvullenDagInstelling();
                 OpvullenWissenLeerlingLijst();
                 OpvullenCboKlassen();
+                OpvullenDagInstellingKlassen();
             }
             else
             {
@@ -244,7 +245,7 @@ namespace Gip_Programmeren__2._0_
             MySqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]), Convert.ToInt16(dr[8]));
                 lstLeerlingLijst.Add(objLeerling);
             }
 
@@ -263,7 +264,7 @@ namespace Gip_Programmeren__2._0_
             MySqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                Klas objKlas = new Klas(dr[0].ToString(), (TimeSpan)dr[2], (int)dr[0]);
+                Klas objKlas = new Klas(dr[1].ToString(), (TimeSpan)dr[2], (int)dr[0]);
                 cboDagKlassen.Items.Add(objKlas);
             }
             conn.Close();
@@ -363,17 +364,16 @@ namespace Gip_Programmeren__2._0_
 
         private void cboDagKlassen_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            cboDagKlassen.Items.Clear();
+            lstWeekindelingLeerlingen.Items.Clear();
             Klas objKlas = (Klas)cboDagKlassen.SelectedItem;
 
             foreach (Leerling item in lstLeerlingLijst)
             {
-                if (item.intKlasnummer == objKlas.intJaar)
+                if (item.intIdKlas == objKlas.intId)
                 {
                     lstWeekindelingLeerlingen.Items.Add(item);
                 }
             }
-
         }
 
 
@@ -471,7 +471,7 @@ namespace Gip_Programmeren__2._0_
 
             strPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Images/", strFileName + ".jpg");
             Uri imageUri = new Uri(strPath);
-            //imgSetting.Source = new BitmapImage(imageUri);
+            imgSetting.Source = new BitmapImage(imageUri);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -484,7 +484,13 @@ namespace Gip_Programmeren__2._0_
 
         }
 
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
 
+        public void WisLeerling()
+        {
+        }
     }
 }
