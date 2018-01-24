@@ -478,7 +478,7 @@ namespace Gip_Programmeren__2._0_
         {
             Leerling objLeerling = (Leerling)lstLeerling.SelectedItem;
             Popup Popup = new Popup();
-            //Popup.intIDLeerling = objLeerling.strIdnummer;
+            Popup.strIDLeerling = objLeerling.strIdnummer;
             Popup.Show();
 
 

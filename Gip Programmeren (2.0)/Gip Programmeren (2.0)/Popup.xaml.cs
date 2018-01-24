@@ -21,7 +21,7 @@ namespace Gip_Programmeren__2._0_
     public partial class Popup : Window
     {
 
-        public int intIDLeerling; 
+        public string strIDLeerling; 
 
 
 
