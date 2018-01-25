@@ -85,6 +85,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Persistence.cs" />
     <Compile Include="Popup.xaml.cs">
       <DependentUpon>Popup.xaml</DependentUpon>
     </Compile>
