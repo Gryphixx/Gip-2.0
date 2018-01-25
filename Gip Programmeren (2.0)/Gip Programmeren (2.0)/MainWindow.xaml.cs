@@ -64,7 +64,9 @@ namespace Gip_Programmeren__2._0_
                 OpvullenLeerlingLijst();
                 OpvullenDagInstelling();
                 OpvullenWissenLeerlingLijst();
-                OpvullenCboKlassen();
+                OpvullenCboKlassen(cboToevoegKlas);
+                OpvullenCboKlassen(cboDagKlassen);
+                OpvullenCboKlassen(cboAanwezigheden);
                 OpvullenDagInstellingKlassen();
             }
             else
@@ -278,6 +280,8 @@ namespace Gip_Programmeren__2._0_
         private void lstWeekindelingLeerlingen_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Leerling objLeerling = (Leerling)lstWeekindelingLeerlingen.SelectedItem;
+            if (objLeerling == null)
+                return;
             chkMaandag.IsChecked = objLeerling.blMaandag;
             chkDinsdag.IsChecked = objLeerling.blDinsdag;
             chkDonderdag.IsChecked = objLeerling.blDonderdag;
@@ -352,7 +356,7 @@ namespace Gip_Programmeren__2._0_
         private void txtLeerlingNaam_KeyUp(object sender, KeyEventArgs e)
         {
             conn.Open();
-            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' ", txtLeerlingNaam.Text);
+            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%'", txtLeerlingNaam.Text);
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
             MySqlDataReader dr = cmd.ExecuteReader();
             lstLeerlinglijst.Items.Clear();
@@ -383,7 +387,7 @@ namespace Gip_Programmeren__2._0_
 
         // Begin ToevoegInstelling
 
-        private void OpvullenCboKlassen()
+        private void OpvullenCboKlassen(ComboBox cboBox)
         {
             conn.Open();
             string _cmd = String.Format("SELECT * FROM arduino.klassen;");
@@ -392,7 +396,7 @@ namespace Gip_Programmeren__2._0_
             while (dr.Read())
             {
                 Klas objKlas = new Klas(dr[1].ToString(),(TimeSpan)dr[2],(int)dr[0]);
-                cboToevoegKlas.Items.Add(objKlas);
+                cboBox.Items.Add(objKlas);
             }
             conn.Close();
         }
@@ -462,7 +466,17 @@ namespace Gip_Programmeren__2._0_
             lblKlas.Content = objLeerling.strKlas;
             lblNummer.Content = objLeerling.intKlasnummer;
             Uri  uri = new Uri(strPath, UriKind.Absolute);
-            IMGWissen.Source = new BitmapImage(uri);
+            
+            try
+            {
+                IMGWissen.Source = new BitmapImage(uri);
+            }
+            catch (Exception)
+            {
+
+                Uri uri2 = new Uri("//hubble/leerlingfotos$/1400059.jpg");
+                IMGWissen.Source = new BitmapImage(uri2);
+            }
            
          
 
@@ -532,6 +546,28 @@ namespace Gip_Programmeren__2._0_
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void txtWissen_KeyUp(object sender, KeyEventArgs e)
+        {
+            conn.Open();
+            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%' ", txtWissen.Text);
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            lstLeerling.Items.Clear();
+            while (dr.Read())
+            {
+
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
+                lstLeerling.Items.Add(objLeerling);
+            }
+
+            conn.Close();
+        }
+
+        private void cboAanwezigheden_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
