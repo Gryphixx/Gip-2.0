@@ -81,7 +81,7 @@
                                     <TextBox Name="txtStamboeknummer" HorizontalAlignment="Left" Height="23" Margin="266,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                     <ComboBox Name="cboToevoegKlas" HorizontalAlignment="Left" Margin="266,122,0,0" VerticalAlignment="Top" Width="120"/>
                                     <Image HorizontalAlignment="Left" Height="134" Margin="10,10,0,0" VerticalAlignment="Top" Width="112"/>
-                                    <Button Name="btnImport" Content="Import" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" Width="112"/>
+                                    <Button Name="btnImport" Content="Selecteer bestand" HorizontalAlignment="Left" Margin="10,187,0,0" VerticalAlignment="Top" Width="112" Click="btnImport_Click_1"/>
                                     <CheckBox Name="chkMa" Content="Ma" HorizontalAlignment="Left" Margin="132,152,0,0" VerticalAlignment="Top" Height="28" Width="42"/>
                                     <CheckBox Name="chkDi" Content="Di" HorizontalAlignment="Left" Margin="179,152,0,0" VerticalAlignment="Top" Height="28" Width="36"/>
                                     <CheckBox Name="chkDo" Content="Do" HorizontalAlignment="Left" Margin="219,152,0,0" VerticalAlignment="Top" Height="28" Width="41"/>
@@ -92,6 +92,8 @@
                                     <Label Content="Klasnummer:" HorizontalAlignment="Left" Margin="132,66,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Stamboeknummer:" HorizontalAlignment="Left" Margin="132,94,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="132,122,0,0" VerticalAlignment="Top"/>
+                                    <TextBox Name="Select" HorizontalAlignment="Left" Height="23" Margin="132,187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="254"/>
+                                    <Button Name="btnImport1" Content="Importeren" HorizontalAlignment="Left" Margin="10,212,0,0" VerticalAlignment="Top" Width="112" Click="btnImport1_Click"/>
                                 </Grid>
                             </TabItem>
                         </TabControl>

@@ -38,9 +38,16 @@
     <ApplicationIcon>heremans.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Excel">
+      <HintPath>..\..\..\..\..\Downloads\output\net20\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel.4.5">
+      <HintPath>..\..\..\..\..\Downloads\output\net45\Excel.4.5.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.10.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -120,6 +127,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Fotos\1300154.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
