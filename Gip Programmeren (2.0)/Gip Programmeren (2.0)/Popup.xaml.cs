@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
-using Excel;
+
 namespace Gip_Programmeren__2._0_
 {
     /// <summary>

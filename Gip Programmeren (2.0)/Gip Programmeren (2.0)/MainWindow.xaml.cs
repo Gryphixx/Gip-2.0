@@ -18,6 +18,8 @@ using Microsoft.Win32;
 using System.Data.OleDb;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using Excel;
 
 namespace Gip_Programmeren__2._0_
 {
@@ -497,15 +499,25 @@ namespace Gip_Programmeren__2._0_
         {
         }
 
+        DataSet result;
+        DataGrid dataGrid = new DataGrid();
+
         private void btnImport_Click_1(object sender, RoutedEventArgs e)
         {
             OpenFileDialog FileDia1 = new OpenFileDialog();
 
             FileDia1.DefaultExt = ".xlsx, .xls";
-            FileDia1.Filter = "excel|*.xls";
+            FileDia1.Filter = "excel|*.xlsx";
             
             if(FileDia1.ShowDialog() == true)
             {
+                FileStream fs = File.Open(FileDia1.FileName, FileMode.Open, FileAccess.Read);
+                IExcelDataReader reader = ExcelReaderFactory.CreateBinaryReader(fs);
+                reader.IsFirstRowAsColumnNames = true;
+                result = reader.AsDataSet();
+                
+                reader.Close();
+                
                 Select.Text = FileDia1.FileName;
             }
 
@@ -514,24 +526,30 @@ namespace Gip_Programmeren__2._0_
 
         private void btnImport1_Click(object sender, RoutedEventArgs e)
         {
-            string Conn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Select.Text + ";Extended Properties = \"Excel 12.0 Xml;HDR=YES\"; ";
-            OleDbConnection conn = new OleDbConnection(Conn);
+            dataGrid.Data Source;
 
-            OleDbCommand myDataAdapter = new OleDbCommand("Select * from [Sheet1$]", conn);
-            conn.Open();
 
-            var dr = myDataAdapter.ExecuteReader();
 
-            try
-            {
-                var bulkCopy = new SqlBulkCopy(_conn);
-                bulkCopy.DestinationTableName = "leerling";
-                bulkCopy.WriteToServer(dr);
-            }
-            catch(SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+
+
+            //string Conn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Select.Text + ";Extended Properties = \"Excel 12.0 Xml;HDR=YES\"; ";
+            //OleDbConnection conn = new OleDbConnection(Conn);
+
+            //OleDbCommand myDataAdapter = new OleDbCommand("Select * from [Sheet1$]", conn);
+            //conn.Open();
+
+            //var dr = myDataAdapter.ExecuteReader();
+
+            //try
+            //{
+            //    var bulkCopy = new SqlBulkCopy(_conn);
+            //    bulkCopy.DestinationTableName = "leerling";
+            //    bulkCopy.WriteToServer(dr);
+            //}
+            //catch(SqlException ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
     }
 }
