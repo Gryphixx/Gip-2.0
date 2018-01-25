@@ -81,7 +81,7 @@
                                     <TextBox Name="txtStamboeknummer" HorizontalAlignment="Left" Height="23" Margin="266,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                                     <ComboBox Name="cboToevoegKlas" HorizontalAlignment="Left" Margin="266,122,0,0" VerticalAlignment="Top" Width="120"/>
                                     <Image HorizontalAlignment="Left" Height="134" Margin="10,10,0,0" VerticalAlignment="Top" Width="112"/>
-                                    <Button Name="btnImport" Content="Import" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" Width="112"/>
+                                    <Button Name="btnImport" Content="Selecteer bestand" HorizontalAlignment="Left" Margin="10,187,0,0" VerticalAlignment="Top" Width="112" Click="btnImport_Click_1"/>
                                     <CheckBox Name="chkMa" Content="Ma" HorizontalAlignment="Left" Margin="132,152,0,0" VerticalAlignment="Top" Height="28" Width="42"/>
                                     <CheckBox Name="chkDi" Content="Di" HorizontalAlignment="Left" Margin="179,152,0,0" VerticalAlignment="Top" Height="28" Width="36"/>
                                     <CheckBox Name="chkDo" Content="Do" HorizontalAlignment="Left" Margin="219,152,0,0" VerticalAlignment="Top" Height="28" Width="41"/>
@@ -92,6 +92,8 @@
                                     <Label Content="Klasnummer:" HorizontalAlignment="Left" Margin="132,66,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Stamboeknummer:" HorizontalAlignment="Left" Margin="132,94,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="132,122,0,0" VerticalAlignment="Top"/>
+                                    <TextBox Name="Select" HorizontalAlignment="Left" Height="23" Margin="132,187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="254"/>
+                                    <Button Name="btnImport1" Content="Importeren" HorizontalAlignment="Left" Margin="10,212,0,0" VerticalAlignment="Top" Width="112" Click="btnImport1_Click"/>
                                 </Grid>
                             </TabItem>
                         </TabControl>
@@ -136,7 +138,7 @@
                             <Image Name="img1400089" HorizontalAlignment="Left" Height="100" Margin="284,0,0,0" VerticalAlignment="Top" Width="67"/>
                             <Label Content="Denzel Ooms" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
                             <Label Content="Olivier Pugin" HorizontalAlignment="Left" Margin="140,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
-                            <Label Content="Dilan hulin" HorizontalAlignment="Left" Margin="266,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
+                            <Label Content="Dylan hulin" HorizontalAlignment="Left" Margin="266,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
                         </Grid>
                         <Label Content="Made with ♥ by" HorizontalAlignment="Left" Margin="120,125,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Calibri" FontWeight="Bold"/>
                         <Label Content="Contact:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
@@ -161,7 +163,7 @@
                 </Ellipse.RenderTransform>
             </Ellipse>
             <Label Content="Scanner Status:" HorizontalAlignment="Left" Margin="0,105.5,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="11"/>
-            <Ellipse Name="ScannerStatus" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,110.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.074,0.374"/>
+            <Ellipse Name="ScannerStatus" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,114.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.074,0.374"/>
 
 
 

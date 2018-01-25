@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
-
+using Excel;
 namespace Gip_Programmeren__2._0_
 {
     /// <summary>
@@ -37,8 +37,10 @@ namespace Gip_Programmeren__2._0_
             string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
             MySqlConnection conn = new MySqlConnection(_conn);
             MySqlCommand comm = new MySqlCommand(String.Format("DELETE FROM leerling WHERE idLeerling ={0}",strIDLeerling));
-            MySqlDataReader dr = comm.ExecuteReader();
-
+            
+            conn.Open();
+            comm.ExecuteNonQuery();
+            conn.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
