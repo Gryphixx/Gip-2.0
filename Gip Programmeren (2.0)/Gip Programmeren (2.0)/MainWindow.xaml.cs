@@ -18,6 +18,7 @@ using Microsoft.Win32;
 using System.Data.OleDb;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO.Ports;
 
 namespace Gip_Programmeren__2._0_
 {
@@ -31,6 +32,14 @@ namespace Gip_Programmeren__2._0_
 
          List<Leerling> lstLeerlingLijst = new List<Leerling>();
         //Opletten internet kan uitvallen en dan wil men nog steeds mensen opslaan.
+
+
+        public delegate void NoArgDelegate();
+        SerialPort Sp;
+        string data;
+        int intData;
+        string portName = "COM4";
+        bool blIsScanning = true;
 
         public MainWindow()
         {
@@ -68,6 +77,7 @@ namespace Gip_Programmeren__2._0_
                 OpvullenCboKlassen(cboDagKlassen);
                 OpvullenCboKlassen(cboAanwezigheden);
                 OpvullenDagInstellingKlassen();
+                OpenArduinoCon();
             }
             else
             {
@@ -75,6 +85,41 @@ namespace Gip_Programmeren__2._0_
             }
             
         }
+
+        //Scan Method
+        
+        private void OpenArduinoCon()
+        {
+            Sp = new SerialPort();
+            Sp.PortName = portName;
+            Sp.BaudRate = 115200;
+            Sp.Parity = Parity.None;
+            Sp.StopBits = StopBits.One;
+            Sp.DataBits = 8;
+            Sp.Handshake = Handshake.None;
+            Sp.Open();
+                Sp.DataReceived += new SerialDataReceivedEventHandler(_OnDataRecieved);
+                
+
+            
+
+
+        }
+
+        private void _OnDataRecieved(object sender, SerialDataReceivedEventArgs e)
+        {
+            base.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Send, (NoArgDelegate)delegate
+            {
+                lblOverzichtNaam.Content = "";
+                
+ 
+                       SerialPort Sp = (SerialPort)sender;
+                        data = Sp.ReadExisting();
+                        lblOverzichtNaam.Content = data.ToString();
+                        //Sp.Close();
+            });
+        }
+
         // Begin StatusIntelling
 
         private void OpvullenLeerlingLijst()
