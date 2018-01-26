@@ -38,9 +38,6 @@
     <ApplicationIcon>heremans.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Excel">
-      <HintPath>..\..\..\..\..\Downloads\output\net20\Excel.dll</HintPath>
-    </Reference>
     <Reference Include="Excel.4.5">
       <HintPath>..\..\..\..\..\Downloads\output\net45\Excel.4.5.dll</HintPath>
     </Reference>
@@ -88,6 +85,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Persistence.cs" />
     <Compile Include="Popup.xaml.cs">
       <DependentUpon>Popup.xaml</DependentUpon>
     </Compile>

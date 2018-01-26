@@ -104,8 +104,11 @@
                         <TabControl HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
                             <TabItem Header="Linken">
                                 <Grid Background="#FFE5E5E5">
-                                    
-                                    
+                                    <ListBox HorizontalAlignment="Left" Height="265" Margin="10,10,0,0" VerticalAlignment="Top" Width="176"/>
+                                    <Button Content="Start" HorizontalAlignment="Left" Margin="191,10,0,0" VerticalAlignment="Top" Width="75"/>
+                                    <Button Content="Stop" HorizontalAlignment="Left" Margin="311,10,0,0" VerticalAlignment="Top" Width="75"/>
+
+
 
                                 </Grid>
                             </TabItem>
@@ -151,7 +154,7 @@
             </TabControl>
             <Image Name="logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="5,192,0,0" Grid.Row="1" Source="http://ozcs-koepel.be/wp-content/uploads/2013/12/sintcordula-300x300.jpg"/>
             <Label Content="Database status:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,81.5,0,0" Grid.Row="1" FontSize="11"/>
-            
+
             <Ellipse Name="StatusDatabase" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,90.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
