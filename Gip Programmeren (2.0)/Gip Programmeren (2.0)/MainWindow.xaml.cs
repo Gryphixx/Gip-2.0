@@ -526,30 +526,33 @@ namespace Gip_Programmeren__2._0_
 
         private void btnImport1_Click(object sender, RoutedEventArgs e)
         {
-            dataGrid.Data Source;
 
 
 
+            //String name = "Items";
+            //String constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
+            //                "C:\\Sample.xlsx" +
+            //                ";Extended Properties='Excel 12.0 XML;HDR=YES;';";
+
+            //OleDbConnection con = new OleDbConnection(constr);
+            //OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
+            //con.Open();
+
+            
 
 
-            //string Conn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Select.Text + ";Extended Properties = \"Excel 12.0 Xml;HDR=YES\"; ";
-            //OleDbConnection conn = new OleDbConnection(Conn);
+            string Conn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Select.Text + ";Extended Properties = \"Excel 12.0 Xml;HDR=YES\"; ";
+            OleDbConnection conn = new OleDbConnection(Conn);
 
-            //OleDbCommand myDataAdapter = new OleDbCommand("Select * from [Sheet1$]", conn);
-            //conn.Open();
+            OleDbCommand oconn = new OleDbCommand("Select * from [Sheet1$]", conn);
+            conn.Open();
 
-            //var dr = myDataAdapter.ExecuteReader();
+            //var dr = oconn.ExecuteReader();
 
-            //try
-            //{
-            //    var bulkCopy = new SqlBulkCopy(_conn);
-            //    bulkCopy.DestinationTableName = "leerling";
-            //    bulkCopy.WriteToServer(dr);
-            //}
-            //catch(SqlException ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+            OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
+            DataTable data = new DataTable();
+            sda.Fill(data);
+            dataGrid.ItemsSource = data.DefaultView;
         }
     }
 }
