@@ -39,7 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Excel.4.5">
-      <HintPath>..\..\..\..\..\Downloads\output\net45\Excel.4.5.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\net45\Excel.4.5.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.10.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -67,14 +67,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Aanwezigheid.cs" />
+    <Compile Include="Business\Aanwezigheid.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Kaart.cs" />
-    <Compile Include="Klas.cs" />
-    <Compile Include="Leerling.cs" />
+    <Compile Include="Business\Kaart.cs" />
+    <Compile Include="Business\Klas.cs" />
+    <Compile Include="Business\Leerling.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -85,7 +85,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Persistence.cs" />
+    <Compile Include="Persistence\Persistence.cs" />
     <Compile Include="Popup.xaml.cs">
       <DependentUpon>Popup.xaml</DependentUpon>
     </Compile>

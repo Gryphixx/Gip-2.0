@@ -40,7 +40,7 @@ namespace Gip_Programmeren__2._0_
         SerialPort Sp;
         string data;
         int intData;
-        string portName = "COM4";
+        string portName = "COM1";
         bool blIsScanning = true;
 
         public MainWindow()
@@ -55,21 +55,10 @@ namespace Gip_Programmeren__2._0_
             img1400089.Source = new BitmapImage(uri);
 
             
+            
+            
 
-            bool result = false;
-            MySqlConnection connection = new MySqlConnection(_conn);
-            try
-            {
-                connection.Open();
-                result = true;
-                connection.Close();
-            }
-            catch
-            {
-                result = false;
-            }
-
-            if (result == true)
+            if (TryConnectionWithDataBase())
             {
                 StatusDatabase.Fill = Brushes.Green;
                 OpvullenLeerlingLijst();
@@ -79,13 +68,44 @@ namespace Gip_Programmeren__2._0_
                 OpvullenCboKlassen(cboDagKlassen);
                 OpvullenCboKlassen(cboAanwezigheden);
                 OpvullenDagInstellingKlassen();
-                OpenArduinoCon();
             }
             else
             {
                 StatusDatabase.Fill = Brushes.Red;
             }
-            
+
+            TryConnectionWithScanner();
+
+        }
+
+        //Try Database Connection
+        private bool TryConnectionWithDataBase()
+        {
+            MySqlConnection connection = new MySqlConnection(_conn);
+            try
+            {
+                connection.Open();
+                connection.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        //Try scanner Connection
+        private void TryConnectionWithScanner()
+        {
+            if (CheckComPorts(portName))
+            {
+                ScannerStatus.Fill = Brushes.Green;
+                OpenArduinoCon();
+            }
+            else
+            {
+                ScannerStatus.Fill = Brushes.Red;
+            }
         }
 
         //Scan Method
@@ -100,7 +120,7 @@ namespace Gip_Programmeren__2._0_
             Sp.DataBits = 8;
             Sp.Handshake = Handshake.None;
             Sp.Open();
-                Sp.DataReceived += new SerialDataReceivedEventHandler(_OnDataRecieved);
+            Sp.DataReceived += new SerialDataReceivedEventHandler(_OnDataRecieved);
                 
 
             
@@ -120,6 +140,20 @@ namespace Gip_Programmeren__2._0_
                         lblOverzichtNaam.Content = data.ToString();
                         //Sp.Close();
             });
+        }
+
+        //Check COM-poorten
+        private bool CheckComPorts(string portname)
+        {
+            string[] strComPorts = SerialPort.GetPortNames();
+            foreach (string port in strComPorts)
+            {
+                if (port == portname)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         // Begin StatusIntelling
@@ -158,7 +192,7 @@ namespace Gip_Programmeren__2._0_
 
         private void OpvullenAanwezigheid(Leerling _objLeerling)
         {
-            conn.Open();
+           conn.Open();
             string _cmd = string.Format("SELECT * from aanwezigheidslijst where Leerling_idLeerlingen = {0}", _objLeerling.strIdnummer);
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
             MySqlDataReader dr = cmd.ExecuteReader();
@@ -167,7 +201,6 @@ namespace Gip_Programmeren__2._0_
                 Aanwezigheid objAanwezigheid = new Aanwezigheid(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
                 lstAanwezigheidslijst.Items.Add(objAanwezigheid);
             }
-
             conn.Close();
         }
 
@@ -215,7 +248,10 @@ namespace Gip_Programmeren__2._0_
         {
             lstAanwezigheidslijst.Items.Clear();
             Leerling objLeerling = (Leerling)lstLeerlinglijst.SelectedItem;
-            OpvullenAanwezigheid(objLeerling);
+            if (objLeerling == null)
+                return;
+            else
+                OpvullenAanwezigheid(objLeerling);
         }
 
         private void rbAanwezig_Checked(object sender, RoutedEventArgs e)
@@ -272,8 +308,9 @@ namespace Gip_Programmeren__2._0_
 
         private void txtWeekindelingNaam_KeyUp(object sender, KeyEventArgs e)
         {
+            Klas objKlas = (Klas)cboDagKlassen.SelectedItem;
             conn.Open();
-            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%' ", txtWeekindelingNaam.Text);
+            string _cmd = string.Format("SELECT * from leerling where (LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%')  and klassen_idKlassen = {1}", txtWeekindelingNaam.Text, objKlas.intId);
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
             MySqlDataReader dr = cmd.ExecuteReader();
             lstWeekindelingLeerlingen.Items.Clear();
@@ -483,7 +520,7 @@ namespace Gip_Programmeren__2._0_
         private void txtLeerling_KeyUp(object sender, KeyEventArgs e)
         {
             conn.Open();
-            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%' ", txtWissen.Text);
+            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%'", txtWissen.Text);
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
             MySqlDataReader dr = cmd.ExecuteReader();
             lstLeerling.Items.Clear();
@@ -633,7 +670,16 @@ namespace Gip_Programmeren__2._0_
 
         private void cboAanwezigheden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            lstLeerlinglijst.Items.Clear();
+            Klas objKlas = (Klas)cboAanwezigheden.SelectedItem;
 
+            foreach (Leerling item in lstLeerlingLijst)
+            {
+                if (item.intIdKlas == objKlas.intId)
+                {
+                    lstLeerlinglijst.Items.Add(item);
+                }
+            }
         }
     }
 }
