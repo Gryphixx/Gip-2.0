@@ -50,6 +50,7 @@
                                     <ComboBox Name="cboDagKlassen" HorizontalAlignment="Left" Margin="70,28,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboDagKlassen_SelectionChanged"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
+                                    <Button Name="btnRefreshCboWeekindeling" Content="" HorizontalAlignment="Left" Margin="195,28,0,0" VerticalAlignment="Top" Width="28" Height="22" Click="btnRefreshCboWeekindeling_Click"/>
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Aanwezigheden">
@@ -67,10 +68,11 @@
                                     <RadioButton Name="rbAfwezig" Content="Afwezig" HorizontalAlignment="Left" Margin="228.939,29,0,0" VerticalAlignment="Top" Grid.Column="2"/>
                                     <TextBox Name="txtLeerlingNaam" HorizontalAlignment="Left" Height="17" Margin="37.939,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" Grid.Column="2" KeyUp="txtLeerlingNaam_KeyUp"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
-                                    <ComboBox Name="cboAanwezigheden" HorizontalAlignment="Left" Margin="37.939,27,0,0" VerticalAlignment="Top" Width="103" Grid.Column="2" SelectionChanged="cboAanwezigheden_SelectionChanged"/>
+                                    <ComboBox Name="cboAanwezigheden" Margin="38,27,203,0" VerticalAlignment="Top" Grid.Column="2" SelectionChanged="cboAanwezigheden_SelectionChanged"/>
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                                     <ComboBox HorizontalAlignment="Left" Margin="231.939,47,0,0" VerticalAlignment="Top" Width="102" Height="17" Grid.Column="2"/>
                                     <Label Content="Weken:" HorizontalAlignment="Left" Margin="153.939,42,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                                    <Button Content="" HorizontalAlignment="Left" Margin="5,27,0,0" VerticalAlignment="Top" Width="28" Grid.Column="2" Height="22" Click="Button_Click_2"/>
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Toevoegen&#xD;&#xA;Toevoegen" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="69" Margin="-1,0,0,0">
@@ -104,9 +106,22 @@
                         <TabControl HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
                             <TabItem Header="Linken">
                                 <Grid Background="#FFE5E5E5">
-                                    <ListBox HorizontalAlignment="Left" Height="265" Margin="10,10,0,0" VerticalAlignment="Top" Width="176"/>
-                                    <Button Content="Start" HorizontalAlignment="Left" Margin="191,10,0,0" VerticalAlignment="Top" Width="75"/>
-                                    <Button Content="Stop" HorizontalAlignment="Left" Margin="311,10,0,0" VerticalAlignment="Top" Width="75"/>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="71*"/>
+                                        <ColumnDefinition Width="325*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ListBox Name="lstListBoxLink" HorizontalAlignment="Left" Height="265" Margin="10,10,0,0" VerticalAlignment="Top" Width="176" Grid.ColumnSpan="2"/>
+                                    <Button Name="btnStartLink" Content="Start" HorizontalAlignment="Left" Margin="119.663,10,0,0" VerticalAlignment="Top" Width="75" Click="btnStartLink_Click" Grid.Column="1"/>
+                                    <Button Name="btnStopLink" Content="Stop" HorizontalAlignment="Left" Margin="239.663,10,0,0" VerticalAlignment="Top" Width="75" Click="btnStopLink_Click" Grid.Column="1"/>
+                                    <Label Content="Naam:" HorizontalAlignment="Left" Margin="120,142,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                    <Label Content="Achternaam:" HorizontalAlignment="Left" Margin="120,168,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                    <Label Content="Klas:" HorizontalAlignment="Left" Margin="120,194,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                    <Label Content="Nummer:" HorizontalAlignment="Left" Margin="120,220,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                    <Image  x:Name="IMGWissenLink" HorizontalAlignment="Left" Height="100" Margin="167,37,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+                                    <Label x:Name="lblNaamLink" Content="" HorizontalAlignment="Left" Margin="209,142,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                    <Label x:Name="lblAchternaamLink" Content="" HorizontalAlignment="Left" Margin="209,168,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                    <Label x:Name="lblKlasLink" Content="" HorizontalAlignment="Left" Margin="209,194,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                    <Label x:Name="lblNummerLink" Content="" HorizontalAlignment="Left" Margin="209,220,0,0" VerticalAlignment="Top" Grid.Column="1"/>
 
 
 
@@ -141,11 +156,14 @@
                             <Image Name="img1400089" HorizontalAlignment="Left" Height="100" Margin="284,0,0,0" VerticalAlignment="Top" Width="67"/>
                             <Label Content="Denzel Ooms" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
                             <Label Content="Olivier Pugin" HorizontalAlignment="Left" Margin="140,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
-                            <Label Content="Dylan hulin" HorizontalAlignment="Left" Margin="266,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
+                            <Label Content="Dilan hulin" HorizontalAlignment="Left" Margin="266,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
                         </Grid>
                         <Label Content="Made with ♥ by" HorizontalAlignment="Left" Margin="120,125,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Calibri" FontWeight="Bold"/>
                         <Label Content="Contact:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                        <Label Content="hulindylan@hotmail.com" HorizontalAlignment="Left" Margin="64,10,0,0" VerticalAlignment="Top"/>
+                        <Label Content="hulindilan@hotmail.com" HorizontalAlignment="Left" Margin="64,10,0,0" VerticalAlignment="Top"/>
+                        <Label Content=" 45%" HorizontalAlignment="Left" Margin="107,270,0,0" VerticalAlignment="Top"/>
+                        <Label Content=" 45%" HorizontalAlignment="Left" Margin="356,270,0,0" VerticalAlignment="Top"/>
+                        <Label Content="10%" HorizontalAlignment="Left" Margin="237,270,0,0" VerticalAlignment="Top"/>
                     </Grid>
 
 
