@@ -38,8 +38,8 @@
                 </TabItem>
                 <TabItem Header="Beheer Leerlingen">
                     <Grid Background="#FFE5E5E5">
-                        <TabControl HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
-                            <TabItem Header="Weekindeling">
+                        <TabControl Name="tabControlBeheerLeerlingen" HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402" SelectionChanged="TabControl_SelectionChanged_1">
+                            <TabItem Name="tabWeekindeling"  Header="Weekindeling">
                                 <Grid Background="#FFE5E5E5">
                                     <ListBox Name="lstWeekindelingLeerlingen" HorizontalAlignment="Left" Height="220" Margin="10,55,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="lstWeekindelingLeerlingen_SelectionChanged"/>
                                     <CheckBox Name="chkMaandag" Content="Maandag" HorizontalAlignment="Left" Margin="195,55,0,0" VerticalAlignment="Top" Click="chkMaandag_Click"/>
@@ -50,7 +50,6 @@
                                     <ComboBox Name="cboDagKlassen" HorizontalAlignment="Left" Margin="70,28,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboDagKlassen_SelectionChanged"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
-                                    <Button Name="btnRefreshCboWeekindeling" Content="" HorizontalAlignment="Left" Margin="195,28,0,0" VerticalAlignment="Top" Width="28" Height="22" Click="btnRefreshCboWeekindeling_Click"/>
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Aanwezigheden">
@@ -72,7 +71,6 @@
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                                     <ComboBox HorizontalAlignment="Left" Margin="231.939,47,0,0" VerticalAlignment="Top" Width="102" Height="17" Grid.Column="2"/>
                                     <Label Content="Weken:" HorizontalAlignment="Left" Margin="153.939,42,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                                    <Button Content="" HorizontalAlignment="Left" Margin="5,27,0,0" VerticalAlignment="Top" Width="28" Grid.Column="2" Height="22" Click="Button_Click_2"/>
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Toevoegen&#xD;&#xA;Toevoegen" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="69" Margin="-1,0,0,0">
@@ -132,7 +130,7 @@
                                     <Label Content="Scan kaart of selecteer een leerling waarvan u de kaart wilt wissen." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top"/>
                                     <TextBox Name="txtWissen" HorizontalAlignment="Left" Height="23" Margin="65,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyUp="txtWissen_KeyUp"/>
-                                    <ListBox Name="lstLeerling" HorizontalAlignment="Left" Height="218" Margin="10,57,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="lstLeerling_SelectionChanged"/>
+                                    <ListBox Name="lstLeerling" HorizontalAlignment="Left" Height="180" Margin="10,95,0,0" VerticalAlignment="Top" Width="175" SelectionChanged="lstLeerling_SelectionChanged"/>
                                     <Button Content="Wissen" HorizontalAlignment="Left" Margin="311,255,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
                                     <Image  Name="IMGWissen" HorizontalAlignment="Left" Height="100" Margin="237,26,0,0" VerticalAlignment="Top" Width="100"/>
                                     <Label Content="Naam:" HorizontalAlignment="Left" Margin="190,131,0,0" VerticalAlignment="Top"/>
@@ -143,6 +141,8 @@
                                     <Label Name="lblAchternaam" Content="" HorizontalAlignment="Left" Margin="279,157,0,0" VerticalAlignment="Top"/>
                                     <Label Name="lblKlas" Content="" HorizontalAlignment="Left" Margin="279,183,0,0" VerticalAlignment="Top"/>
                                     <Label Name="lblNummer" Content="" HorizontalAlignment="Left" Margin="279,209,0,0" VerticalAlignment="Top"/>
+                                    <ComboBox Name="cboWissen" HorizontalAlignment="Left" Margin="65,54,0,0" VerticalAlignment="Top" Width="120"/>
+                                    <Label Content="Klas:" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
                                 </Grid>
                             </TabItem>
                         </TabControl>

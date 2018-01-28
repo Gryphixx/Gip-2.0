@@ -29,12 +29,19 @@ namespace Gip_Programmeren__2._0_
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Wat+Werkwoord+Hoe
+
         static string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
         static MySqlConnection conn = new MySqlConnection(_conn);
 
-         List<Leerling> lstLeerlingLijst = new List<Leerling>();
+        List<Leerling> lstLeerlingLijst = new List<Leerling>();
+        List<Klas> lstKlasLijst = new List<Klas>();
         //Opletten internet kan uitvallen en dan wil men nog steeds mensen opslaan.
         
+       //Excel
+        DataSet result;
+        DataGrid dataGrid = new DataGrid();
+
         public delegate void NoArgDelegate();
         SerialPort Sp;
         string data;
@@ -53,13 +60,14 @@ namespace Gip_Programmeren__2._0_
             if (TryConnectionWithDataBase())
             {
                 StatusDatabase.Fill = Brushes.Green;
-                OpvullenLeerlingLijst();
-                OpvullenDagInstelling();
+                ListLeerlingFillWithDB();
+                ListboxRefreshWithList(lstWeekindelingLeerlingen, cboDagKlassen, lstLeerlingLijst);
+                ListboxRefreshWithList(lstLeerlinglijst, cboAanwezigheden, lstLeerlingLijst);
                 OpvullenWissenLeerlingLijst();
-                OpvullenCboKlassen(cboToevoegKlas);
-                OpvullenCboKlassen(cboDagKlassen);
-                OpvullenCboKlassen(cboAanwezigheden);
-                OpvullenDagInstellingKlassen();
+                ListKlasFillWithDB(lstKlasLijst);
+                CboKlassenFillWithList(cboToevoegKlas, lstKlasLijst);
+                CboKlassenFillWithList(cboDagKlassen, lstKlasLijst);
+                CboKlassenFillWithList(cboAanwezigheden, lstKlasLijst);
                 ListboxFillLeerlingZonderKaart(lstListBoxLink);
             }
             else
@@ -165,23 +173,6 @@ namespace Gip_Programmeren__2._0_
             conn.Close();
         }
 
-        private void txtZoekNaam_KeyUp(object sender, KeyEventArgs e)
-        {
-            conn.Open();
-            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' ", txtLeerlingNaam.Text);
-            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
-            MySqlDataReader dr = cmd.ExecuteReader();
-            lstLeerlinglijst.Items.Clear();
-            while (dr.Read())
-            {
-
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
-                lstLeerlinglijst.Items.Add(objLeerling);
-            }
-
-            conn.Close();
-        }
-
         private void OpvullenAanwezigheid(Leerling _objLeerling)
         {
            conn.Open();
@@ -196,37 +187,6 @@ namespace Gip_Programmeren__2._0_
             conn.Close();
         }
 
-        private void lstAanwezigheidslijst_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            rbAanwezig.IsChecked = false;
-            rbTeLaat.IsChecked = false;
-            rbTeLaatReden.IsChecked = false;
-            rbAfwezig.IsChecked = false;
-            Aanwezigheid objAanwezigheid = (Aanwezigheid)lstAanwezigheidslijst.SelectedItem;
-            if (objAanwezigheid == null)
-            {
-                return;
-            }
-            switch (objAanwezigheid.strStatusId)
-            {
-                case "1":
-                    rbAanwezig.IsChecked = true;
-                    break;
-
-                case "2":
-                    rbTeLaat.IsChecked = true;
-                    break;
-
-                case "3":
-                    rbTeLaatReden.IsChecked = true;
-                    break;
-
-                case "4":
-                    rbAfwezig.IsChecked = true;
-                    break;
-            }
-        }
-
         private void UpdateDBStatus(String _CkStatus, Leerling _objLeerling)
         {
             conn.Open();
@@ -234,16 +194,6 @@ namespace Gip_Programmeren__2._0_
             MySqlCommand cmd = new MySqlCommand(_cmd, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
-        }
-    
-        private void lstLeerlinglijst_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            lstAanwezigheidslijst.Items.Clear();
-            Leerling objLeerling = (Leerling)lstLeerlinglijst.SelectedItem;
-            if (objLeerling == null)
-                return;
-            else
-                OpvullenAanwezigheid(objLeerling);
         }
 
         private void rbAanwezig_Checked(object sender, RoutedEventArgs e)
@@ -296,55 +246,6 @@ namespace Gip_Programmeren__2._0_
             {
                 UpdateDBStatus("4", objLeerling);
             }
-        }
-
-        private void txtWeekindelingNaam_KeyUp(object sender, KeyEventArgs e)
-        {
-            ListboxRefreshOnSearch(lstWeekindelingLeerlingen, txtWeekindelingNaam, cboDagKlassen);
-        }
-
-        // Begin DagInstelling
-
-        private void OpvullenDagInstelling()
-        {
-                conn.Open();
-            string _cmd = string.Format("SELECT * from leerling");
-            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
-            MySqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]), Convert.ToInt16(dr[8]), Convert.ToString(dr[9]));
-                lstLeerlingLijst.Add(objLeerling);
-            }
-
-            ListboxRefreshWithList(lstWeekindelingLeerlingen, cboDagKlassen);
-            conn.Close();
-        }
-
-        private void OpvullenDagInstellingKlassen()
-        {
-            conn.Open();
-            string _cmd = string.Format("SELECT * from klassen");
-            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
-            MySqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                Klas objKlas = new Klas(dr[1].ToString(), (TimeSpan)dr[2], (int)dr[0]);
-                cboDagKlassen.Items.Add(objKlas);
-            }
-            conn.Close();
-
-        }
-
-        private void lstWeekindelingLeerlingen_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Leerling objLeerling = (Leerling)lstWeekindelingLeerlingen.SelectedItem;
-            if (objLeerling == null)
-                return;
-            chkMaandag.IsChecked = objLeerling.blMaandag;
-            chkDinsdag.IsChecked = objLeerling.blDinsdag;
-            chkDonderdag.IsChecked = objLeerling.blDonderdag;
-            chkVrijdag.IsChecked = objLeerling.blVrijdag;
         }
 
         private void UpdateDBDag(string _DBDag, bool _blDag, Leerling _objLeerling)
@@ -412,19 +313,22 @@ namespace Gip_Programmeren__2._0_
             }
         }
 
-        private void txtLeerlingNaam_KeyUp(object sender, KeyEventArgs e)
-        {
-            ListboxRefreshOnSearch(lstLeerlinglijst, txtLeerlingNaam, cboAanwezigheden);
-        }
-
-        private void cboDagKlassen_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ListboxRefreshOnSearch(lstWeekindelingLeerlingen, txtWeekindelingNaam, cboDagKlassen);
-        }
-
         // Begin ToevoegInstelling
 
-        private void OpvullenCboKlassen(ComboBox cboBox)
+        private void ListLeerlingFillWithDB()
+        {
+            conn.Open();
+            string _cmd = string.Format("SELECT * from leerling");
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]), Convert.ToInt16(dr[8]), Convert.ToString(dr[9]));
+                lstLeerlingLijst.Add(objLeerling);
+            }
+            conn.Close();
+        }
+        private void ListKlasFillWithDB(List<Klas> objListKlas)
         {
             conn.Open();
             string _cmd = String.Format("SELECT * FROM arduino.klassen;");
@@ -432,31 +336,21 @@ namespace Gip_Programmeren__2._0_
             MySqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                Klas objKlas = new Klas(dr[1].ToString(),(TimeSpan)dr[2],(int)dr[0]);
-                cboBox.Items.Add(objKlas);
+                Klas objKlas = new Klas(dr[1].ToString(), (TimeSpan)dr[2], (int)dr[0]);
+                objListKlas.Add(objKlas);
             }
             conn.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CboKlassenFillWithList(ComboBox cboBox, List<Klas> objListKlas)
         {
-            conn.Open();
-            Klas objKlas = (Klas)cboToevoegKlas.SelectedItem;
-            string _cmd = string.Format("INSERT INTO `arduino`.`leerling` (`idLeerlingen`, `LeerlingVNaam`, `LeerlingANaam`, `LeerlingKlasNummer`, `Monday`, `Tuesday`, `Thursday`, `Friday`, `klassen_idKlassen`) VALUES ('{4}', '{2}', '{1}', '{3}', '{6}', '{7}', '{8}', '{9}', '{5}');", 
-            txtVoornaam, txtAchternaam, txtKlasnummer, txtStamboeknummer, objKlas.intId, chkMa.IsChecked, chkDi.IsChecked, chkDo.IsChecked, chkVr.IsChecked);
-
-
-            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+            cboBox.Items.Add("Alle Klassen");
+            cboBox.SelectedIndex = 0;
+            foreach (Klas klas in objListKlas)
+            {
+                cboBox.Items.Add(klas);
+            }
         }
-
-        private void btnImport_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        // Begin Beheer Kaarten
-
-        // Begin Wissen
 
         public void OpvullenWissenLeerlingLijst()
         {
@@ -472,34 +366,6 @@ namespace Gip_Programmeren__2._0_
             conn.Close();
         }
 
-        private void lstLeerling_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            lblNaam.Content = null;
-            lblAchternaam.Content = null;
-            lblNummer.Content = null;
-            lblKlas.Content = null;
-            IMGWissen.Source = null;
-            
-            Leerling objLeerling = (Leerling)lstLeerling.SelectedItem;
-            string strPath = String.Format("//hubble/leerlingfotos$/{0}.jpg", objLeerling.strIdnummer);
-            lblNaam.Content = objLeerling.strVoornaam;
-            lblAchternaam.Content = objLeerling.strAchternaam;
-            lblKlas.Content = objLeerling.strKlas;
-            lblNummer.Content = objLeerling.intKlasnummer;
-            Uri  uri = new Uri(strPath, UriKind.Absolute);
-            
-            try
-            {
-                IMGWissen.Source = new BitmapImage(uri);
-            }
-
-            catch (Exception)
-            {
-                Uri uri2 = new Uri("//hubble/leerlingfotos$/1400059.jpg");
-                IMGWissen.Source = new BitmapImage(uri2);
-            }
-        }
-
         private void InsertPicturesInstellingen(Image imgSetting, string strFileName)
         {
             string strPath;
@@ -507,20 +373,6 @@ namespace Gip_Programmeren__2._0_
             strPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Images/", strFileName + ".jpg");
             Uri imageUri = new Uri(strPath);
             imgSetting.Source = new BitmapImage(imageUri);
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Leerling objLeerling = (Leerling)lstLeerling.SelectedItem;
-            if (objLeerling == null)
-            {
-                return;
-            }
-            Popup Popup = new Popup();
-            Popup.strIDLeerling = objLeerling.strIdnummer;
-            Popup.Show();
-
-
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -532,94 +384,15 @@ namespace Gip_Programmeren__2._0_
         {
 
         }
-
-        DataSet result;
-        DataGrid dataGrid = new DataGrid();
-
-        private void btnImport_Click_1(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog FileDia1 = new OpenFileDialog();
-
-            FileDia1.DefaultExt = ".xlsx, .xls";
-            FileDia1.Filter = "excel|*.xlsx";
-            
-            if(FileDia1.ShowDialog() == true)
-            {
-                FileStream fs = File.Open(FileDia1.FileName, FileMode.Open, FileAccess.Read);
-                IExcelDataReader reader = ExcelReaderFactory.CreateBinaryReader(fs);
-                reader.IsFirstRowAsColumnNames = true;
-                result = reader.AsDataSet();
-                
-                reader.Close();
-                
-                Select.Text = FileDia1.FileName;
-            }
-
-
-        }
-
-        private void btnImport1_Click(object sender, RoutedEventArgs e)
-        {
-
-
-
-            //String name = "Items";
-            //String constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
-            //                "C:\\Sample.xlsx" +
-            //                ";Extended Properties='Excel 12.0 XML;HDR=YES;';";
-
-            //OleDbConnection con = new OleDbConnection(constr);
-            //OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
-            //con.Open();
-
-            
-
-
-            string Conn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Select.Text + ";Extended Properties = \"Excel 12.0 Xml;HDR=YES\"; ";
-            OleDbConnection conn = new OleDbConnection(Conn);
-
-            OleDbCommand oconn = new OleDbCommand("Select * from [Sheet1$]", conn);
-            conn.Open();
-
-            //var dr = oconn.ExecuteReader();
-
-            OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
-            DataTable data = new DataTable();
-            sda.Fill(data);
-            dataGrid.ItemsSource = data.DefaultView;
-        }
-
-        private void txtWissen_KeyUp(object sender, KeyEventArgs e)
-        {
-            conn.Open();
-            string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%' ", txtWissen.Text);
-            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
-            MySqlDataReader dr = cmd.ExecuteReader();
-            lstLeerling.Items.Clear();
-            while (dr.Read())
-            {
-
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
-                lstLeerling.Items.Add(objLeerling);
-            }
-
-            conn.Close();
-        }
-
-        private void cboAanwezigheden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ListboxRefreshOnSearch(lstLeerlinglijst, txtLeerlingNaam, cboAanwezigheden);
-        }
-
+        
         //Aanmaken Leerling List
-
-        private void ListboxRefreshWithList(ListBox lstListBox, ComboBox cboKlasBox)
+        private void ListboxRefreshWithList(ListBox lstListBox, ComboBox cboKlasBox, List<Leerling> objListLeerling)
         {
-            cboKlasBox.SelectedItem = null;
+            cboKlasBox.SelectedIndex = 0;
             lstListBox.Items.Clear();
-            foreach (Leerling item in lstLeerlingLijst)
+            foreach (Leerling leerling in objListLeerling)
             {
-                lstListBox.Items.Add(item);
+                lstListBox.Items.Add(leerling);
             }
         }
 
@@ -630,19 +403,44 @@ namespace Gip_Programmeren__2._0_
             {
                 return;
             }
-            Klas objKlas = (Klas)cboKlasBox.SelectedItem;
-
-            conn.Open();
-            string _cmd = string.Format("SELECT * from leerling where (LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%')  and klassen_idKlassen = {1}", txtSearchBox.Text, objKlas.intId);
-            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
-            MySqlDataReader dr = cmd.ExecuteReader();
-            lstLeerlingListBox.Items.Clear();
-            while (dr.Read())
+            if (cboKlasBox.SelectedValue.ToString() == "Alle Klassen")
             {
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
-                lstLeerlingListBox.Items.Add(objLeerling);
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                conn.Open();
+                string _cmd = string.Format("SELECT * from leerling where LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%'", txtSearchBox.Text);
+                MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+                MySqlDataReader dr = cmd.ExecuteReader();
+                lstLeerlingListBox.Items.Clear();
+                while (dr.Read())
+                {
+                    Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
+                    lstLeerlingListBox.Items.Add(objLeerling);
+                }
+                conn.Close();
             }
-            conn.Close();
+            else
+            {
+                Klas objKlas = (Klas)cboKlasBox.SelectedItem;
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                conn.Open();
+                string _cmd = string.Format("SELECT * from leerling where (LeerlingVNaam like '{0}%' or LeerlingANaam like '{0}%')  and klassen_idKlassen = {1}", txtSearchBox.Text, objKlas.intId);
+                MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+                MySqlDataReader dr = cmd.ExecuteReader();
+                lstLeerlingListBox.Items.Clear();
+                while (dr.Read())
+                {
+                    Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
+                    lstLeerlingListBox.Items.Add(objLeerling);
+                }
+                conn.Close();
+            }
+            
         }
 
         //Fill linking listbox
@@ -665,17 +463,19 @@ namespace Gip_Programmeren__2._0_
             imgCredits.Source = new BitmapImage(uri);
         }
 
-#region Events
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        #region Events
+        #region Button Click
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ListboxRefreshWithList(lstLeerlinglijst, cboAanwezigheden);
-        }
+            conn.Open();
+            Klas objKlas = (Klas)cboToevoegKlas.SelectedItem;
+            string _cmd = string.Format("INSERT INTO `arduino`.`leerling` (`idLeerlingen`, `LeerlingVNaam`, `LeerlingANaam`, `LeerlingKlasNummer`, `Monday`, `Tuesday`, `Thursday`, `Friday`, `klassen_idKlassen`) VALUES ('{4}', '{2}', '{1}', '{3}', '{6}', '{7}', '{8}', '{9}', '{5}');",
+            txtVoornaam, txtAchternaam, txtKlasnummer, txtStamboeknummer, objKlas.intId, chkMa.IsChecked, chkDi.IsChecked, chkDo.IsChecked, chkVr.IsChecked);
 
-        private void btnRefreshCboWeekindeling_Click(object sender, RoutedEventArgs e)
-        {
-            ListboxRefreshWithList(lstWeekindelingLeerlingen, cboDagKlassen);
-        }
 
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+        }
+        
         private void btnStartLink_Click(object sender, RoutedEventArgs e)
         {
             blIsScanning = false;
@@ -685,6 +485,204 @@ namespace Gip_Programmeren__2._0_
         {
             blIsScanning = true;
         }
-#endregion
+
+        private void btnImport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Leerling objLeerling = (Leerling)lstLeerling.SelectedItem;
+            if (objLeerling == null)
+            {
+                return;
+            }
+            Popup Popup = new Popup();
+            Popup.strIDLeerling = objLeerling.strIdnummer;
+            Popup.Show();
+        }
+
+        private void btnImport_Click_1(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog FileDia1 = new OpenFileDialog();
+
+            FileDia1.DefaultExt = ".xlsx, .xls";
+            FileDia1.Filter = "excel|*.xlsx";
+
+            if (FileDia1.ShowDialog() == true)
+            {
+                FileStream fs = File.Open(FileDia1.FileName, FileMode.Open, FileAccess.Read);
+                IExcelDataReader reader = ExcelReaderFactory.CreateBinaryReader(fs);
+                reader.IsFirstRowAsColumnNames = true;
+                result = reader.AsDataSet();
+
+                reader.Close();
+
+                Select.Text = FileDia1.FileName;
+            }
+        }
+
+        private void btnImport1_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
+            //String name = "Items";
+            //String constr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
+            //                "C:\\Sample.xlsx" +
+            //                ";Extended Properties='Excel 12.0 XML;HDR=YES;';";
+
+            //OleDbConnection con = new OleDbConnection(constr);
+            //OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
+            //con.Open();
+
+
+
+
+            string Conn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Select.Text + ";Extended Properties = \"Excel 12.0 Xml;HDR=YES\"; ";
+            OleDbConnection conn = new OleDbConnection(Conn);
+
+            OleDbCommand oconn = new OleDbCommand("Select * from [Sheet1$]", conn);
+            conn.Open();
+
+            //var dr = oconn.ExecuteReader();
+
+            OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
+            DataTable data = new DataTable();
+            sda.Fill(data);
+            dataGrid.ItemsSource = data.DefaultView;
+        }
+        #endregion
+        #region Listbox SelectionChanged
+        private void lstWeekindelingLeerlingen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Leerling objLeerling = (Leerling)lstWeekindelingLeerlingen.SelectedItem;
+            if (objLeerling == null)
+                return;
+            chkMaandag.IsChecked = objLeerling.blMaandag;
+            chkDinsdag.IsChecked = objLeerling.blDinsdag;
+            chkDonderdag.IsChecked = objLeerling.blDonderdag;
+            chkVrijdag.IsChecked = objLeerling.blVrijdag;
+        }
+
+        private void lstLeerlinglijst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lstAanwezigheidslijst.Items.Clear();
+            Leerling objLeerling = (Leerling)lstLeerlinglijst.SelectedItem;
+            if (objLeerling == null)
+                return;
+            else
+                OpvullenAanwezigheid(objLeerling);
+        }
+
+        private void lstAanwezigheidslijst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            rbAanwezig.IsChecked = false;
+            rbTeLaat.IsChecked = false;
+            rbTeLaatReden.IsChecked = false;
+            rbAfwezig.IsChecked = false;
+            Aanwezigheid objAanwezigheid = (Aanwezigheid)lstAanwezigheidslijst.SelectedItem;
+            if (objAanwezigheid == null)
+            {
+                return;
+            }
+            switch (objAanwezigheid.strStatusId)
+            {
+                case "1":
+                    rbAanwezig.IsChecked = true;
+                    break;
+
+                case "2":
+                    rbTeLaat.IsChecked = true;
+                    break;
+
+                case "3":
+                    rbTeLaatReden.IsChecked = true;
+                    break;
+
+                case "4":
+                    rbAfwezig.IsChecked = true;
+                    break;
+            }
+        }
+
+        private void lstLeerling_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lblNaam.Content = null;
+            lblAchternaam.Content = null;
+            lblNummer.Content = null;
+            lblKlas.Content = null;
+            IMGWissen.Source = null;
+
+            Leerling objLeerling = (Leerling)lstLeerling.SelectedItem;
+            string strPath = String.Format("//hubble/leerlingfotos$/{0}.jpg", objLeerling.strIdnummer);
+            lblNaam.Content = objLeerling.strVoornaam;
+            lblAchternaam.Content = objLeerling.strAchternaam;
+            lblKlas.Content = objLeerling.strKlas;
+            lblNummer.Content = objLeerling.intKlasnummer;
+            Uri uri = new Uri(strPath, UriKind.Absolute);
+
+            try
+            {
+                IMGWissen.Source = new BitmapImage(uri);
+            }
+
+            catch (Exception)
+            {
+                Uri uri2 = new Uri("//hubble/leerlingfotos$/1400059.jpg");
+                IMGWissen.Source = new BitmapImage(uri2);
+            }
+        }
+
+
+        #endregion
+        #region Combobox SelectionChanged
+        private void cboAanwezigheden_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            txtLeerlingNaam.Clear();
+            ListboxRefreshOnSearch(lstLeerlinglijst, txtLeerlingNaam, cboAanwezigheden);
+        }
+
+        private void cboDagKlassen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            txtWeekindelingNaam.Clear();
+            ListboxRefreshOnSearch(lstWeekindelingLeerlingen, txtWeekindelingNaam, cboDagKlassen);
+        }
+
+
+        #endregion
+        #region TextBox KeyUp
+        private void txtWissen_KeyUp(object sender, KeyEventArgs e)
+        {
+            ListboxRefreshOnSearch(lstLeerling, txtWissen, cboWissen);
+        }
+
+        private void txtLeerlingNaam_KeyUp(object sender, KeyEventArgs e)
+        {
+            ListboxRefreshOnSearch(lstLeerlinglijst, txtLeerlingNaam, cboAanwezigheden);
+        }
+
+        private void txtWeekindelingNaam_KeyUp(object sender, KeyEventArgs e)
+        {
+            ListboxRefreshOnSearch(lstWeekindelingLeerlingen, txtWeekindelingNaam, cboDagKlassen);
+        }
+
+
+        #endregion
+
+        #region /
+        
+        
+        #endregion
+
+        #endregion
+        
+            
+
+        private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
