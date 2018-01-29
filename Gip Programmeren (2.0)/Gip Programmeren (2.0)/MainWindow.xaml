@@ -148,7 +148,7 @@
                         </TabControl>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Instellingen" Height="24" Margin="-2,-2,0,-2">
+                <TabItem Header="Instellingen">
                     <Grid Background="#FFE5E5E5">
                         <Grid HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
                             
