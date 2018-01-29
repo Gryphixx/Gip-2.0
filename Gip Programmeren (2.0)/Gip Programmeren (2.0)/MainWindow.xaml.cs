@@ -44,7 +44,7 @@ namespace Gip_Programmeren__2._0_
 
         public delegate void NoArgDelegate();
         SerialPort Sp;
-        string data;
+        string strCardData;
         string portName = "COM3";
         bool blIsScanning = true;
 #region Startup
@@ -130,15 +130,17 @@ namespace Gip_Programmeren__2._0_
                 lblOverzichtNaam.Content = "";
 
                 SerialPort Sp = (SerialPort)sender;
-                data = Sp.ReadExisting();
+                strCardData = Sp.ReadExisting();
 
                 if (blIsScanning)
                 {
-                    lblOverzichtNaam.Content = data.ToString();
+                    lblOverzichtNaam.Content = strCardData.ToString();
                 }
                 else
                 {
-                    lstListBoxLink.Items.Add(data.ToString());
+                    Leerling objLeerling = (Leerling)lstListBoxLink.SelectedItem;
+                    CardAddToLeerlingOnScan(strCardData, objLeerling);
+                    LeerlingRemoveFromListboxOnScan(lstListBoxLink);
                 }
             });
         }
@@ -453,6 +455,7 @@ namespace Gip_Programmeren__2._0_
                     lstLeerlingListbox.Items.Add(leerling);
                 }
             }
+            lstLeerlingListbox.SelectedIndex = 0;
         }
 
         //Fill Credits Pictures
@@ -463,6 +466,34 @@ namespace Gip_Programmeren__2._0_
             imgCredits.Source = new BitmapImage(uri);
         }
 
+        private void AanwezigheidAddToDB(Leerling objLeerling)
+        {
+            DateTime dteNow = DateTime.Now;
+            conn.Open();
+            string _cmd = string.Format("INSERT INTO 'arduino'.'aanwezigheid' (' Datum', 'Leerling_idLeerlingen', 'Status_idStatus') VALUES ('{0}', '{1}', '{2}', '{3}');", dteNow, objLeerling.strIdnummer, "1");
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+        }
+
+        private void LeerlingRemoveFromListboxOnScan(ListBox lstBox)
+        {
+            int intIndexList = lstBox.SelectedIndex;
+            if (intIndexList < 0)
+            {
+                return;
+            }
+            lstBox.Items.RemoveAt(intIndexList);
+            lstBox.SelectedIndex = intIndexList;
+        }
+
+        private void CardAddToLeerlingOnScan(string strCardID, Leerling objLeerling)
+        {
+            string _cmd = string.Format("UPDATE arduino.leerling SET LeerlingKaartID = '{0}' WHERE idLeerlingen = '{1}'", strCardID.ToString(), Convert.ToInt32(objLeerling.strIdnummer));
+            MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
         #region Events
         #region Button Click
         private void Button_Click(object sender, RoutedEventArgs e)
