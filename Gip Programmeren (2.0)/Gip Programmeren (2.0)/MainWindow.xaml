@@ -148,7 +148,14 @@
                         </TabControl>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Instellingen">
+                <TabItem Header="Instellingen" Height="24" Margin="-2,-2,0,-2">
+                    <Grid Background="#FFE5E5E5">
+                        <Grid HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
+                            
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Credits">
                     <Grid Background="#FFE5E5E5">
                         <Grid HorizontalAlignment="Left" Height="145" Margin="10,168,0,0" VerticalAlignment="Top" Width="376">
                             <Image Name="img1300124" HorizontalAlignment="Left" Height="100" Margin="27,0,0,0" VerticalAlignment="Top" Width="83"/>
@@ -171,9 +178,9 @@
                 </TabItem>
             </TabControl>
             <Image Name="logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="5,192,0,0" Grid.Row="1" Source="http://ozcs-koepel.be/wp-content/uploads/2013/12/sintcordula-300x300.jpg"/>
-            <Label Content="Database status:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,81.5,0,0" Grid.Row="1" FontSize="11"/>
+            <Label Content="Database status:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,102.5,0,0" Grid.Row="1" FontSize="11"/>
 
-            <Ellipse Name="StatusDatabase" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,90.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.5,0.5">
+            <Ellipse Name="StatusDatabase" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,110.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -183,8 +190,8 @@
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
-            <Label Content="Scanner Status:" HorizontalAlignment="Left" Margin="0,105.5,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="11"/>
-            <Ellipse Name="ScannerStatus" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,114.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.074,0.374"/>
+            <Label Content="Scanner Status:" HorizontalAlignment="Left" Margin="0,126.5,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="11"/>
+            <Ellipse Name="ScannerStatus" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,134.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.074,0.374"/>
 
 
 

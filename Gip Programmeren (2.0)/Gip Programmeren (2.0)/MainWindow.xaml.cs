@@ -45,7 +45,7 @@ namespace Gip_Programmeren__2._0_
         public delegate void NoArgDelegate();
         SerialPort Sp;
         string data;
-        string portName = "COM1";
+        string portName = "COM3";
         bool blIsScanning = true;
 #region Startup
         public MainWindow()
@@ -554,6 +554,7 @@ namespace Gip_Programmeren__2._0_
             dataGrid.ItemsSource = data.DefaultView;
         }
         #endregion
+
         #region Listbox SelectionChanged
         private void lstWeekindelingLeerlingen_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -637,6 +638,7 @@ namespace Gip_Programmeren__2._0_
 
 
         #endregion
+
         #region Combobox SelectionChanged
         private void cboAanwezigheden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -652,6 +654,7 @@ namespace Gip_Programmeren__2._0_
 
 
         #endregion
+
         #region TextBox KeyUp
         private void txtWissen_KeyUp(object sender, KeyEventArgs e)
         {
@@ -672,17 +675,17 @@ namespace Gip_Programmeren__2._0_
         #endregion
 
         #region /
-        
-        
-        #endregion
-
-        #endregion
-        
-            
-
         private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
+        #endregion
+
+        #endregion
+
+
+
+
     }
 }
