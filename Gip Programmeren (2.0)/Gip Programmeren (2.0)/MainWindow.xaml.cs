@@ -29,7 +29,7 @@ namespace Gip_Programmeren__2._0_
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Wat+Werkwoord+Hoe
+        //Werkwoord+Wat+Hoe
 
         static string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
         static MySqlConnection conn = new MySqlConnection(_conn);
@@ -529,7 +529,7 @@ namespace Gip_Programmeren__2._0_
             {
                 return;
             }
-            Popup Popup = new Popup();
+            Popup Popup = new Popup(lstLeerlingLijst);
             Popup.strIDLeerling = objLeerling.strIdnummer;
             Popup.Show();
         }
@@ -584,6 +584,12 @@ namespace Gip_Programmeren__2._0_
             sda.Fill(data);
             dataGrid.ItemsSource = data.DefaultView;
         }
+
+        private void btnRetryDBCon_Click(object sender, RoutedEventArgs e)
+        {
+            TryConnectionWithDataBase();
+        }
+
         #endregion
 
         #region Listbox SelectionChanged
@@ -718,9 +724,6 @@ namespace Gip_Programmeren__2._0_
 
         #endregion
 
-        private void btnRetryDBCon_Click(object sender, RoutedEventArgs e)
-        {
-            TryConnectionWithDataBase();
-        }
+       
     }
 }
