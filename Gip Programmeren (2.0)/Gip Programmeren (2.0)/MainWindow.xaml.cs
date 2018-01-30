@@ -531,7 +531,7 @@ namespace Gip_Programmeren__2._0_
             }
             Popup Popup = new Popup();
             Popup.strIDLeerling = objLeerling.strIdnummer;
-            Popup.Show();
+            Popup.ShowDialog();
         }
 
         private void btnImport_Click_1(object sender, RoutedEventArgs e)

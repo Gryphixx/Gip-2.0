@@ -36,7 +36,7 @@ namespace Gip_Programmeren__2._0_
         {
             string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
             MySqlConnection conn = new MySqlConnection(_conn);
-            MySqlCommand comm = new MySqlCommand(String.Format("DELETE FROM leerling WHERE idLeerling ={0}",strIDLeerling));
+            MySqlCommand comm = new MySqlCommand(String.Format("DELETE FROM leerling WHERE idLeerlingen ={0}",Convert.ToInt32(strIDLeerling)),conn);
             
             conn.Open();
             comm.ExecuteNonQuery();
