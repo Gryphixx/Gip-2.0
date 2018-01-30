@@ -18,8 +18,9 @@ using Microsoft.Win32;
 using System.Data.OleDb;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
+using System.IO.Ports;
 using Excel;
+using System.IO;
 
 namespace Gip_Programmeren__2._0_
 {
@@ -101,7 +102,6 @@ namespace Gip_Programmeren__2._0_
             lstLeerlinglijst.Items.Clear();
             while (dr.Read())
             {
-
                 Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
                 lstLeerlinglijst.Items.Add(objLeerling);
             }
@@ -274,7 +274,6 @@ namespace Gip_Programmeren__2._0_
                 cboDagKlassen.Items.Add(objKlas);
             }
             conn.Close();
-            
         }
 
         private void lstWeekindelingLeerlingen_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -526,7 +525,7 @@ namespace Gip_Programmeren__2._0_
 
         private void btnImport1_Click(object sender, RoutedEventArgs e)
         {
-            dataGrid.Data Source;
+            //dataGrid.Data Source;
 
 
 

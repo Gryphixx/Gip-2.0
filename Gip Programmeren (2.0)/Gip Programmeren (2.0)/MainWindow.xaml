@@ -133,7 +133,7 @@
                         </TabControl>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Instellingen">
+                <TabItem Header="Credits" Margin="-2,20,0,-24">
                     <Grid Background="#FFE5E5E5">
                         <Grid HorizontalAlignment="Left" Height="145" Margin="10,168,0,0" VerticalAlignment="Top" Width="376">
                             <Image Name="img1300124" HorizontalAlignment="Left" Height="100" Margin="27,0,0,0" VerticalAlignment="Top" Width="83"/>
@@ -151,11 +151,23 @@
 
 
                 </TabItem>
+                <TabItem Header="Instellingen" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="107" Margin="-2,-20,0,0">
+                    <Grid Background="#FFE5E5E5">
+                        <Button Content="Opslaan" HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Label Content="COM Poort:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="86,14,0,0" VerticalAlignment="Top" Width="62">
+                            <ComboBoxItem Content="COM1" HorizontalAlignment="Left" Width="92"/>
+                            <ComboBoxItem Content="COM2" HorizontalAlignment="Left" Width="92"/>
+                            <ComboBoxItem Content="COM3" HorizontalAlignment="Left" Width="92"/>
+                            <ComboBoxItem Content="COM4" HorizontalAlignment="Left" Width="92"/>
+                        </ComboBox>
+                    </Grid>
+                </TabItem>
             </TabControl>
             <Image Name="logo" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="5,192,0,0" Grid.Row="1" Source="http://ozcs-koepel.be/wp-content/uploads/2013/12/sintcordula-300x300.jpg"/>
-            <Label Content="Database status:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,81.5,0,0" Grid.Row="1" FontSize="11"/>
+            <Label Content="Database status:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,104.5,0,0" Grid.Row="1" FontSize="11"/>
 
-            <Ellipse Name="StatusDatabase" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,90.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.5,0.5">
+            <Ellipse Name="StatusDatabase" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,112.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -165,8 +177,8 @@
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
-            <Label Content="Scanner Status:" HorizontalAlignment="Left" Margin="0,105.5,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="11"/>
-            <Ellipse Name="ScannerStatus" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,114.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.074,0.374"/>
+            <Label Content="Scanner Status:" HorizontalAlignment="Left" Margin="0,128.5,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="11"/>
+            <Ellipse Name="ScannerStatus" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,136.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.074,0.374"/>
 
 
 
