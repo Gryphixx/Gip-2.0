@@ -722,5 +722,12 @@ namespace Gip_Programmeren__2._0_
         {
             TryConnectionWithDataBase();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            string newConn = string.Format("{0};user id={1};database={2};password={3}", txtInstellingenDatabaseNaam.Text, txtInstallingenUsername.Text, txtInstallingenDatabaseTable.Text, txtInstellingenPassword.Text);
+            _conn = newConn;
+            TryConnectionWithDataBase();
+        }
     }
 }
