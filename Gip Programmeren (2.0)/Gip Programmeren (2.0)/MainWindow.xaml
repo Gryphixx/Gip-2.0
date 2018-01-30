@@ -153,6 +153,17 @@
                         <Grid HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
                             
                         </Grid>
+                        <Label Content="Scanner Instellingen" HorizontalAlignment="Left" Margin="133,10,0,0" VerticalAlignment="Top" Width="114"/>
+                        <Label Content="COM Poort:" HorizontalAlignment="Left" Margin="43,50,0,0" VerticalAlignment="Top"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="258,54,0,0" VerticalAlignment="Top" Width="102"/>
+                        <Label Content="Database Naam:" HorizontalAlignment="Left" Margin="43,76,0,0" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="258,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102"/>
+                        <Label Content="Username:" HorizontalAlignment="Left" Margin="43,128,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Database Table:" HorizontalAlignment="Left" Margin="43,102,0,0" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="258,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="258,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102"/>
+                        <Label Content="Password:" HorizontalAlignment="Left" Margin="43,154,0,0" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="258,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Credits">
