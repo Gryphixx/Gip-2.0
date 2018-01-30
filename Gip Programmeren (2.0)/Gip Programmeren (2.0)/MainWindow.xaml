@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gip_Programmeren__2._0_"
         mc:Ignorable="d"
-        Title="Aanwezigheidssysteem" Height="682.5" Width="1054.5"
-        WindowStartupLocation ="CenterScreen">
+        Title="Aanwezigheidssysteem" Height="1083" Width="1701.217"
+        WindowStartupLocation ="CenterScreen"
+        WindowState="Maximized">
     <Viewbox>
         <Grid>
             <Grid.RowDefinitions>
@@ -150,7 +151,20 @@
                 </TabItem>
                 <TabItem Header="Instellingen">
                     <Grid Background="#FFE5E5E5">
-                        <Grid HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402"/>
+                        <Grid HorizontalAlignment="Left" Height="313" VerticalAlignment="Top" Width="402">
+
+                        </Grid>
+                        <Label Content="Scanner Instellingen" HorizontalAlignment="Left" Margin="133,10,0,0" VerticalAlignment="Top" Width="114"/>
+                        <Label Content="COM Poort:" HorizontalAlignment="Left" Margin="43,50,0,0" VerticalAlignment="Top"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="258,54,0,0" VerticalAlignment="Top" Width="102"/>
+                        <Label Content="Database Naam:" HorizontalAlignment="Left" Margin="43,76,0,0" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="258,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102"/>
+                        <Label Content="Username:" HorizontalAlignment="Left" Margin="43,128,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Database Table:" HorizontalAlignment="Left" Margin="43,102,0,0" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="258,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="258,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102"/>
+                        <Label Content="Password:" HorizontalAlignment="Left" Margin="43,154,0,0" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="258,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Credits">
@@ -165,7 +179,7 @@
                         </Grid>
                         <Label Content="Made with ♥ by" HorizontalAlignment="Left" Margin="120,125,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Calibri" FontWeight="Bold"/>
                         <Label Content="Contact:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                        <Label Content="hulindylan@hotmail.com" HorizontalAlignment="Left" Margin="64,10,0,0" VerticalAlignment="Top"/>
+                        <Label Content="hulindilan@hotmail.com" HorizontalAlignment="Left" Margin="64,10,0,0" VerticalAlignment="Top"/>
                         <Label Content=" 45%" HorizontalAlignment="Left" Margin="107,270,0,0" VerticalAlignment="Top"/>
                         <Label Content=" 45%" HorizontalAlignment="Left" Margin="356,270,0,0" VerticalAlignment="Top"/>
                         <Label Content="10%" HorizontalAlignment="Left" Margin="237,270,0,0" VerticalAlignment="Top"/>
@@ -188,8 +202,9 @@
                     </TransformGroup>
                 </Ellipse.RenderTransform>
             </Ellipse>
-            <Label Content="Scanner Status:" HorizontalAlignment="Left" Margin="0,126.5,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="11"/>
-            <Ellipse Name="ScannerStatus" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,134.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.074,0.374"/>
+            <Label Content="Scanner Status:" HorizontalAlignment="Left" Margin="0,144.5,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="11"/>
+            <Ellipse Name="ScannerStatus" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="12" Margin="87,152.5,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="13" RenderTransformOrigin="0.074,0.374"/>
+            <Button Name="btnRetryDBCon" Content="Retry Connection" HorizontalAlignment="Left" Margin="5,126.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95" Click="btnRetryDBCon_Click"/>
 
 
 

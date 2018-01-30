@@ -711,12 +711,16 @@ namespace Gip_Programmeren__2._0_
 
         }
 
+
+
+
         #endregion
 
         #endregion
 
-
-
-
+        private void btnRetryDBCon_Click(object sender, RoutedEventArgs e)
+        {
+            TryConnectionWithDataBase();
+        }
     }
 }
