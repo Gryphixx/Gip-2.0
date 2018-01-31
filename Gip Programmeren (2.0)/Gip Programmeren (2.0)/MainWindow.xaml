@@ -176,14 +176,11 @@
                             <Image Name="img1400089" HorizontalAlignment="Left" Height="100" Margin="284,0,0,0" VerticalAlignment="Top" Width="67"/>
                             <Label Content="Denzel Ooms" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
                             <Label Content="Olivier Pugin" HorizontalAlignment="Left" Margin="140,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
-                            <Label Content="Dilan hulin" HorizontalAlignment="Left" Margin="266,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
+                            <Label Content="Dylan hulin" HorizontalAlignment="Left" Margin="266,100,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="100" FontSize="16" FontFamily="Calibri"/>
                         </Grid>
                         <Label Content="Made with ♥ by" HorizontalAlignment="Left" Margin="120,125,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Calibri" FontWeight="Bold"/>
                         <Label Content="Contact:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                         <Label Content="hulindilan@hotmail.com" HorizontalAlignment="Left" Margin="64,10,0,0" VerticalAlignment="Top"/>
-                        <Label Content=" 45%" HorizontalAlignment="Left" Margin="107,270,0,0" VerticalAlignment="Top"/>
-                        <Label Content=" 45%" HorizontalAlignment="Left" Margin="356,270,0,0" VerticalAlignment="Top"/>
-                        <Label Content="10%" HorizontalAlignment="Left" Margin="237,270,0,0" VerticalAlignment="Top"/>
                     </Grid>
 
 

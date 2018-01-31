@@ -72,6 +72,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Business\Business.cs" />
     <Compile Include="Business\Kaart.cs" />
     <Compile Include="Business\Klas.cs" />
     <Compile Include="Business\Leerling.cs" />
