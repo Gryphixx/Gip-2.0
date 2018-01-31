@@ -12,11 +12,7 @@ namespace Gip_Programmeren__2._0_.Business
 
 
 
-
-        private void ClearItemsInTab(List<List> objList)
-        {
-
-        }
+        
 
     }
 }
