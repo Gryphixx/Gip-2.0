@@ -603,8 +603,6 @@ namespace Gip_Programmeren__2._0_
         private void lstAanwezigheidslijst_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             rbAanwezig.IsChecked = false;
-            rbTeLaat.IsChecked = false;
-            rbTeLaatReden.IsChecked = false;
             rbAfwezig.IsChecked = false;
             Aanwezigheid objAanwezigheid = (Aanwezigheid)lstAanwezigheidslijst.SelectedItem;
             if (objAanwezigheid == null)
@@ -618,14 +616,6 @@ namespace Gip_Programmeren__2._0_
                     break;
 
                 case "2":
-                    rbTeLaat.IsChecked = true;
-                    break;
-
-                case "3":
-                    rbTeLaatReden.IsChecked = true;
-                    break;
-
-                case "4":
                     rbAfwezig.IsChecked = true;
                     break;
             }
