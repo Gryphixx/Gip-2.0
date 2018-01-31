@@ -9,5 +9,14 @@ namespace Gip_Programmeren__2._0_.Business
     class Business
     {
 
+
+
+
+
+        private void ClearItemsInTab(List<List> objList)
+        {
+
+        }
+
     }
 }

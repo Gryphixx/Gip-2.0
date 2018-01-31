@@ -56,24 +56,8 @@ namespace Gip_Programmeren__2._0_
             FillCreditsPicture(img1300154, "1300154");
             FillCreditsPicture(img1400089, "1400089");
 
-
-            if (TryConnectionWithDataBase())
-            {
-                StatusDatabase.Fill = Brushes.Green;
-                ListLeerlingFillWithDB();
-                ListboxRefreshWithList(lstWeekindelingLeerlingen, cboDagKlassen, lstLeerlingLijst);
-                ListboxRefreshWithList(lstLeerlinglijst, cboAanwezigheden, lstLeerlingLijst);
-                OpvullenWissenLeerlingLijst();
-                ListKlasFillWithDB(lstKlasLijst);
-                CboKlassenFillWithList(cboToevoegKlas, lstKlasLijst);
-                CboKlassenFillWithList(cboDagKlassen, lstKlasLijst);
-                CboKlassenFillWithList(cboAanwezigheden, lstKlasLijst);
-                ListboxFillLeerlingZonderKaart(lstListBoxLink);
-            }
-            else
-            {
-                StatusDatabase.Fill = Brushes.Red;
-            }
+            LoadApplicationWithDB();
+           
 
             TryConnectionWithScanner();
 
@@ -92,6 +76,28 @@ namespace Gip_Programmeren__2._0_
             catch
             {
                 return false;
+            }
+
+        }
+
+        private void LoadApplicationWithDB()
+        {
+            if (TryConnectionWithDataBase())
+            {
+                StatusDatabase.Fill = Brushes.Green;
+                ListLeerlingFillWithDB();
+                ListboxRefreshWithList(lstWeekindelingLeerlingen, cboDagKlassen, lstLeerlingLijst);
+                ListboxRefreshWithList(lstLeerlinglijst, cboAanwezigheden, lstLeerlingLijst);
+                OpvullenWissenLeerlingLijst();
+                ListKlasFillWithDB(lstKlasLijst);
+                CboKlassenFillWithList(cboToevoegKlas, lstKlasLijst);
+                CboKlassenFillWithList(cboDagKlassen, lstKlasLijst);
+                CboKlassenFillWithList(cboAanwezigheden, lstKlasLijst);
+                ListboxFillLeerlingZonderKaart(lstListBoxLink);
+            }
+            else
+            {
+                StatusDatabase.Fill = Brushes.Red;
             }
         }
 
@@ -590,6 +596,12 @@ namespace Gip_Programmeren__2._0_
             TryConnectionWithDataBase();
         }
 
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            string newConn = string.Format("server={0};user id={1};database={2};password={3}", txtInstellingenServerIP.Text, txtInstallingenUsername.Text, txtInstallingenDatabaseName.Text, txtInstellingenPassword.Text);
+            _conn = newConn;
+            LoadApplicationWithDB();
+        }
         #endregion
 
         #region Listbox SelectionChanged
@@ -715,6 +727,8 @@ namespace Gip_Programmeren__2._0_
         private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
+
+            List<List> objList = new List<List>();
         }
 
 
@@ -724,16 +738,5 @@ namespace Gip_Programmeren__2._0_
 
         #endregion
 
-        private void btnRetryDBCon_Click(object sender, RoutedEventArgs e)
-        {
-            TryConnectionWithDataBase();
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            string newConn = string.Format("{0};user id={1};database={2};password={3}", txtInstellingenServerIP.Text, txtInstallingenUsername.Text, txtInstallingenDatabaseName.Text, txtInstellingenPassword.Text);
-            _conn = newConn;
-            TryConnectionWithDataBase();
-        }
     }
 }
