@@ -36,17 +36,17 @@ namespace Gip_Programmeren__2._0_
 
         }
 
-        private List<Aanwezigheid> FillAanwezigheidLijst()
+        private List<Aanwezigheid> CreateAanwezigheidLijst()
         {
             List<Aanwezigheid> lstAanwezigheid = new List<Aanwezigheid>();
 
             msqlConn.Open();
-            string msqlCmd = string.Format("SELECT * from aanwezigheidslijst");
-            MySqlCommand _msqlCmd = new MySqlCommand(msqlCmd, msqlConn);
-            MySqlDataReader DataReader = _msqlCmd.ExecuteReader();
-            while (DataReader.Read())
+            string _cmd = string.Format("SELECT * from aanwezigheidslijst");
+            MySqlCommand cmd = new MySqlCommand(_cmd, msqlConn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
             {
-                Aanwezigheid objAanwezigheid = new Aanwezigheid(DataReader[0].ToString(), DataReader[1].ToString(), DataReader[2].ToString(), DataReader[3].ToString());
+                Aanwezigheid objAanwezigheid = new Aanwezigheid(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString());
                 lstAanwezigheid.Add(objAanwezigheid);
             }
             msqlConn.Close();
@@ -54,7 +54,23 @@ namespace Gip_Programmeren__2._0_
             return lstAanwezigheid;
         }
 
+        private List<Klas> CreateKlassenLijst()
+        {
+            List<Klas> lstKlas = new List<Klas>();
 
+            msqlConn.Open();
+            string _cmd = String.Format("SELECT * FROM arduino.klassen;");
+            MySqlCommand cmd = new MySqlCommand(_cmd, msqlConn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Klas objKlas = new Klas(dr[1].ToString(), (TimeSpan)dr[2], (int)dr[0]);
+                lstKlas.Add(objKlas);
+            }
+            msqlConn.Close();
+
+            return lstKlas;
+        }
 
 
 
