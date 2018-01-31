@@ -522,7 +522,7 @@ namespace Gip_Programmeren__2._0_
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void btnVerwijderen_Click(object sender, RoutedEventArgs e)
         {
             Leerling objLeerling = (Leerling)lstLeerling.SelectedItem;
             if (objLeerling == null)
@@ -568,21 +568,31 @@ namespace Gip_Programmeren__2._0_
             //OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
             //con.Open();
 
-
+            string _cmd;
 
 
             string Conn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Select.Text + ";Extended Properties = \"Excel 12.0 Xml;HDR=YES\"; ";
-            OleDbConnection conn = new OleDbConnection(Conn);
+            OleDbConnection conn1 = new OleDbConnection(Conn);
 
-            OleDbCommand oconn = new OleDbCommand("Select * from [Sheet1$]", conn);
-            conn.Open();
+            OleDbCommand oconn = new OleDbCommand("Select * from [Blad1$]", conn1);
+            conn1.Open();
 
             //var dr = oconn.ExecuteReader();
 
             OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
             DataTable data = new DataTable();
             sda.Fill(data);
-            dataGrid.ItemsSource = data.DefaultView;
+            //dataGrid.ItemsSource = data.DefaultView;
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                _cmd = string.Format("INSERT INTO arduino.leerling(LeerlingKlasNummer, LeerlingANaam, LeerlingVNaam,TempKlas, idLeerlingen) values('{0}','{1}','{2}','{3}','{4}') ", (data.Rows[i].ItemArray.GetValue(0).ToString()), (data.Rows[i].ItemArray.GetValue(1).ToString()), (data.Rows[i].ItemArray.GetValue(2).ToString()), (data.Rows[i].ItemArray.GetValue(3).ToString()), (data.Rows[i].ItemArray.GetValue(4).ToString()));
+                MySqlCommand cmd = new MySqlCommand(_cmd, conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            
+
         }
         #endregion
 
