@@ -531,7 +531,7 @@ namespace Gip_Programmeren__2._0_
             }
             Popup Popup = new Popup(lstLeerlingLijst);
             Popup.strIDLeerling = objLeerling.strIdnummer;
-            Popup.Show();
+            Popup.ShowDialog();
         }
 
         private void btnImport_Click_1(object sender, RoutedEventArgs e)
@@ -724,6 +724,16 @@ namespace Gip_Programmeren__2._0_
 
         #endregion
 
-       
+        private void btnRetryDBCon_Click(object sender, RoutedEventArgs e)
+        {
+            TryConnectionWithDataBase();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            string newConn = string.Format("{0};user id={1};database={2};password={3}", txtInstellingenServerIP.Text, txtInstallingenUsername.Text, txtInstallingenDatabaseName.Text, txtInstellingenPassword.Text);
+            _conn = newConn;
+            TryConnectionWithDataBase();
+        }
     }
 }
