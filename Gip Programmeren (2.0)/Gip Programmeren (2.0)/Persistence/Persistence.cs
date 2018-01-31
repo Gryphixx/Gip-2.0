@@ -72,7 +72,16 @@ namespace Gip_Programmeren__2._0_
 
         private void GetLeerling()
         {
+            msqlConn.Open();
+            string _cmd = string.Format("SELECT * from leerling");
+            MySqlCommand cmd = new MySqlCommand(_cmd, msqlConn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
 
+            }
+            msqlConn.Close();
         }
 
         private List<Aanwezigheid> CreateAanwezigheidLijst()
@@ -91,17 +100,6 @@ namespace Gip_Programmeren__2._0_
             msqlConn.Close();
 
             return lstAanwezigheid;
-        }
-            msqlConn.Open();
-            string _cmd = string.Format("SELECT * from leerling");
-            MySqlCommand cmd = new MySqlCommand(_cmd, msqlConn);
-            MySqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                Leerling objLeerling = new Leerling(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), Convert.ToInt16(dr[3]), Convert.ToBoolean(dr[4]), Convert.ToBoolean(dr[5]), Convert.ToBoolean(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToString(dr[10]));
-               
-            }
-            msqlConn.Close();
         }
 
         private List<Klas> CreateKlassenLijst()
