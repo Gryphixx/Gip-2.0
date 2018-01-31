@@ -211,32 +211,6 @@ namespace Gip_Programmeren__2._0_
             }
         }
 
-        private void rbTeLaatReden_Checked(object sender, RoutedEventArgs e)
-        {
-            Leerling objLeerling = (Leerling)lstLeerlinglijst.SelectedItem;
-            if (objLeerling == null)
-            {
-                return;
-            }
-            else
-            {
-                UpdateDBStatus("3", objLeerling);
-            }
-        }
-
-        private void rbTeLaat_Checked(object sender, RoutedEventArgs e)
-        {
-            Leerling objLeerling = (Leerling)lstLeerlinglijst.SelectedItem;
-            if (objLeerling == null)
-            {
-                return;
-            }
-            else
-            {
-                UpdateDBStatus("2", objLeerling);
-            }
-        }
-
         private void rbAfwezig_Checked(object sender, RoutedEventArgs e)
         {
             Leerling objLeerling = (Leerling)lstLeerlinglijst.SelectedItem;
@@ -246,7 +220,7 @@ namespace Gip_Programmeren__2._0_
             }
             else
             {
-                UpdateDBStatus("4", objLeerling);
+                UpdateDBStatus("2", objLeerling);
             }
         }
 
