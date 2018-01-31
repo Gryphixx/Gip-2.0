@@ -24,10 +24,11 @@ namespace Gip_Programmeren__2._0_
 
         public string strIDLeerling;
 
+        public Popup(List<Leerling> lstLeerling)
+        {
+            InitializeComponent();
 
-        //public Popup(List<Leerling> lstLeerling)
-        //{
-        //    InitializeComponent();
+        }
 
         //}
 
@@ -40,6 +41,7 @@ namespace Gip_Programmeren__2._0_
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             string _conn = string.Format("server=84.196.202.210;user id=Denzel;database=arduino;password={0}", "Denzel");
             MySqlConnection conn = new MySqlConnection(_conn);
             MySqlCommand comm = new MySqlCommand(String.Format("UPDATE leerling SET F_Archived = 1 WHERE idLeerlingen ={0}",Convert.ToInt32(strIDLeerling)),conn);

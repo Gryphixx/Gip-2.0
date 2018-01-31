@@ -63,15 +63,13 @@
                                     <ListBox Name="lstLeerlinglijst" HorizontalAlignment="Left" Height="205" Margin="10,70,0,0" VerticalAlignment="Top" Width="183" SelectionChanged="lstLeerlinglijst_SelectionChanged" Grid.ColumnSpan="3"/>
                                     <ListBox Name="lstAanwezigheidslijst" HorizontalAlignment="Left" Height="205" Margin="150.939,70,0,0" VerticalAlignment="Top" Width="183" SelectionChanged="lstAanwezigheidslijst_SelectionChanged" Grid.Column="2"/>
                                     <RadioButton Name="rbAanwezig" Content="Aanwezig" HorizontalAlignment="Left" Margin="153.939,10,0,0" VerticalAlignment="Top" Checked="rbAanwezig_Checked" Grid.Column="2"/>
-                                    <RadioButton Name="rbTeLaat" Content="Te Laat" HorizontalAlignment="Left" Margin="153.939,27,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                                    <RadioButton Name="rbTeLaatReden" Content="Te Laat met reden" HorizontalAlignment="Left" Margin="228.939,10,0,0" VerticalAlignment="Top" Checked="rbTeLaatReden_Checked" Grid.Column="2"/>
-                                    <RadioButton Name="rbAfwezig" Content="Afwezig" HorizontalAlignment="Left" Margin="228.939,29,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                                    <RadioButton Name="rbAfwezig" Content="Afwezig" HorizontalAlignment="Left" Margin="232,10,0,0" VerticalAlignment="Top" Grid.Column="2"/>
                                     <TextBox Name="txtLeerlingNaam" HorizontalAlignment="Left" Height="17" Margin="37.939,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" Grid.Column="2" KeyUp="txtLeerlingNaam_KeyUp"/>
                                     <Label Content="Leerling:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
                                     <ComboBox Name="cboAanwezigheden" Margin="38,27,203,0" VerticalAlignment="Top" Grid.Column="2" SelectionChanged="cboAanwezigheden_SelectionChanged"/>
                                     <Label Content="Klas:" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="231.939,47,0,0" VerticalAlignment="Top" Width="102" Height="17" Grid.Column="2"/>
-                                    <Label Content="Weken:" HorizontalAlignment="Left" Margin="153.939,42,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                                    <ComboBox HorizontalAlignment="Left" Margin="232,32,0,0" VerticalAlignment="Top" Width="102" Height="17" Grid.Column="2"/>
+                                    <Label Content="Weken:" HorizontalAlignment="Left" Margin="154,30,0,0" VerticalAlignment="Top" Grid.Column="2"/>
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Toevoegen&#xD;&#xA;Toevoegen" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="69" Margin="-1,0,0,0">
