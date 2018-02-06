@@ -712,5 +712,11 @@ namespace Gip_Programmeren__2._0_
 
         #endregion
 
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            Verwijderen Verwijder = new Verwijderen();
+            Verwijder.ShowDialog();
+
+        }
     }
 }
